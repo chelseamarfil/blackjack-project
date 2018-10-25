@@ -14,5 +14,8 @@ int main(int argc, const char * argv[]) {
     // c. The program will randomly select and show the user two cards.
     // d. The program will randomly select another two cards and show one card (dealer’s cards).
     // e. The program will show the value of user’s cards and ask if the user wants to hit or stand or split.
+    
+    
+    //menu
     return 0;
 }
