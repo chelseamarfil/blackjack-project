@@ -1,1 +1,1 @@
-# BlackJack Project
+# Blackjack Project
