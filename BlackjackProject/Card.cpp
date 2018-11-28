@@ -44,6 +44,8 @@ int Card::getFaceValue() {
         return 10;
     } else if (face == "Queen") {
         return 10;
+    } else {
+        return 0;
     }
 }
 
