@@ -17,7 +17,9 @@ public:
     void shuffle();
     Card dealCard();
     const int NUMBER_OF_CARDS = 52;
+    printDeck() const;
 private:
+	//deckOfCArds is a pointer to a Card type
     Card* deckOfCards;
     int currentCard;
     

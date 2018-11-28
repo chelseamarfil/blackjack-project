@@ -17,9 +17,12 @@ Card::Card(string mFace, string mSuit) {
     suit = mSuit;
 }
 
-//int Card::getFaceValue() {
-//    
-//}
+int Card::getFaceValue() {
+	if(face == "Ace"){
+		return 1;
+	}
+	
+}
 
 string Card::print() const {
     return (face + " of " + suit);
