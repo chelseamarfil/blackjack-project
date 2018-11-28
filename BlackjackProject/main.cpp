@@ -29,6 +29,13 @@ double promptAmountToBet() {
     return betAmt;
 }
 
+/** Randomly select and show the user two cards.
+ @return
+ */
+string selectAndShowTwo() {
+    
+}
+
 int main(int argc, const char * argv[]) {
     // a. Ask the user to enter the account number.
     int acctNum = promptAccountNumber();
@@ -39,7 +46,10 @@ int main(int argc, const char * argv[]) {
     cout << endl;
     
     // c. The program will randomly select and show the user two cards.
+    
     // d. The program will randomly select another two cards and show one card (dealer’s cards).
+    
+    
     // e. The program will show the value of user’s cards and ask if the user wants to hit or stand or split.
     return 0;
 }
