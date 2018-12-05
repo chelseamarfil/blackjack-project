@@ -11,6 +11,10 @@
 
 #import "Card.h"
 
+using namespace std;
+#include <string>
+#include <iostream>
+
 class DeckOfCards {
 public:
     DeckOfCards();

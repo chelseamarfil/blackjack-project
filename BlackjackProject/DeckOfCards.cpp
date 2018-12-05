@@ -29,7 +29,13 @@ void DeckOfCards::shuffle() {
 }
 
 Card DeckOfCards:: dealCard() {
-    
+    if (currentCard > NUMBER_OF_CARDS) {
+        shuffle();
+    }
+    if (currentCard < NUMBER_OF_CARDS) {
+        return(deckOfCards[currentCard++]);
+    }
+    return deckOfCards[0];
 }
 
 
