@@ -8,7 +8,8 @@
 
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char * argv[]) 
+{
     // a. Ask the user to enter the account number.
     // b. Ask the user to enter the amount of money he/she wants to bet.
     // c. The program will randomly select and show the user two cards.
