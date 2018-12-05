@@ -51,6 +51,9 @@ int main(int argc, const char * argv[]) {
     
     
     // e. The program will show the value of user’s cards and ask if the user wants to hit or stand or split.
+    
+    
+    //menu
     return 0;
 }
 
