@@ -57,6 +57,8 @@ void stand ()
 	}
 }
 
+//Testing
+
 int main(int argc, const char * argv[]) 
 {
     // a. Ask the user to enter the account number.
