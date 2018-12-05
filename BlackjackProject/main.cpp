@@ -36,6 +36,27 @@ string selectAndShowTwo() {
     
 }
 
+/**
+If the user decides to stand, decide how the program will 
+select a card for the dealer
+**/
+
+void stand ()
+{
+	int decision;
+	cin>>decision;
+	
+	if (decision < 5 )
+	{
+		hit();
+	}
+	
+	else if (decision > 5)
+	{
+		split();
+	}
+}
+
 int main(int argc, const char * argv[]) 
 {
     // a. Ask the user to enter the account number.
