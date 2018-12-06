@@ -15,6 +15,6 @@ public:
     Player(int accountNumber);
     int getAccountNumber() const;
 private:
-    Account mAccountNumber;
+    int mAccountNumber;
 }
 #endif /* Player_h */
