@@ -12,6 +12,7 @@
 		BC7D85AA2191055B00E1BFF5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC7D85A92191055B00E1BFF5 /* Player.cpp */; };
 		BC7D85AC2191056700E1BFF5 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC7D85AB2191056700E1BFF5 /* Account.cpp */; };
 		BCC24CE52181252B00826091 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCC24CE42181252B00826091 /* main.cpp */; };
+		BCF8717A21B8A259002F69E9 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCF8717921B8A259002F69E9 /* Game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		BC7D85AE2191057700E1BFF5 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		BCC24CE12181252B00826091 /* BlackjackProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BlackjackProject; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC24CE42181252B00826091 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BCF8717921B8A259002F69E9 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		BCF8717B21B8A3D0002F69E9 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 				BC7D85AE2191057700E1BFF5 /* Player.h */,
 				BC7D85AB2191056700E1BFF5 /* Account.cpp */,
 				BC7D85AD2191057000E1BFF5 /* Account.h */,
+				BCF8717921B8A259002F69E9 /* Game.cpp */,
+				BCF8717B21B8A3D0002F69E9 /* Game.h */,
 			);
 			path = BlackjackProject;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				BC7D85AA2191055B00E1BFF5 /* Player.cpp in Sources */,
 				BC7D85AC2191056700E1BFF5 /* Account.cpp in Sources */,
 				BC7D85A72190FA5000E1BFF5 /* Card.cpp in Sources */,
+				BCF8717A21B8A259002F69E9 /* Game.cpp in Sources */,
 				BCC24CE52181252B00826091 /* main.cpp in Sources */,
 				BC7D85902187B97B00E1BFF5 /* DeckOfCards.cpp in Sources */,
 			);
