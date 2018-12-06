@@ -11,13 +11,14 @@
 using namespace std;
 
 Player::Player() {
+    
 }
 
 Player::Player(int accountNumber) {
     mAccountNumber = accountNumber;
 }
 
-int Account::getAccountNumber() {
+int Player::getAccountNumber() {
     return mAccountNumber;
 }
 
