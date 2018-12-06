@@ -7,3 +7,17 @@
 //
 
 #include <stdio.h>
+#include "Player.h"
+using namespace std;
+
+Player::Player() {
+}
+
+Player::Player(int accountNumber) {
+    mAccountNumber = accountNumber;
+}
+
+int Account::getAccountNumber() {
+    return mAccountNumber;
+}
+

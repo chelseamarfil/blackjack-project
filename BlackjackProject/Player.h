@@ -9,5 +9,12 @@
 #ifndef Player_h
 #define Player_h
 
-
+class Player {
+public:
+    Player();
+    Player(int accountNumber);
+    int getAccountNumber() const;
+private:
+    Account mAccountNumber;
+}
 #endif /* Player_h */
