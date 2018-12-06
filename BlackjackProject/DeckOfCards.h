@@ -9,21 +9,22 @@
 #ifndef DeckOfCards_h
 #define DeckOfCards_h
 
-#import "Card.h"
+#include "Card.h"
 
 using namespace std;
 #include <string>
 #include <iostream>
+
+const int NUMBER_OF_CARDS = 52;
 
 class DeckOfCards {
 public:
     DeckOfCards();
     void shuffle();
     Card dealCard();
-    const int NUMBER_OF_CARDS = 52;
-    printDeck() const;
+    void printDeck() const;
 private:
-	//deckOfCArds is a pointer to a Card type
+    //deckOfCArds is a pointer to a Card type
     Card* deckOfCards;
     int currentCard;
     

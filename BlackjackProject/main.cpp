@@ -7,79 +7,83 @@
  */
 
 #include <iostream>
+#include "DeckOfCards.h"
+#include "Game.h"
+#include <map>
 using namespace std;
 
-/** Ask the user to enter the account number.
- @return acctNum - the user's account number.
- */
-int promptAccountNumber() {
-    cout << "Enter your account number: ";
-    int acctNum;
-    cin >> acctNum;
-    return acctNum;
-}
 
-/** Ask the user to enter the amount of money he/she wants to bet.
- @return betAmt - the amount of money user wants to bet.
- */
-double promptAmountToBet() {
-    cout << "Enter the amount of money to bet: ";
-    int betAmt;
-    cin >> betAmt;
-    return betAmt;
-}
+///**
+//If the user decides to stand, decide how the program will
+//select a card for the dealer
+//**/
+//
+//void stand ()
+//{
+//    int decision;
+//    cin>>decision;
+//
+//    if (decision < 5 )
+//    {
+//        hit();
+//    }
+//
+//    else if (decision > 5)
+//    {
+//        split();
+//    }
+//}
 
-/** Randomly select and show the user two cards.
- @return
- */
-string selectAndShowTwo() {
+int main(int argc, const char * argv[]) {
     
-}
-
-/**
-If the user decides to stand, decide how the program will 
-select a card for the dealer
-**/
-
-void stand ()
-{
-	int decision;
-	cin>>decision;
-	
-	if (decision < 5 )
-	{
-		hit();
-	}
-	
-	else if (decision > 5)
-	{
-		split();
-	}
-}
-
-//Testing
-
-int main(int argc, const char * argv[]) 
-{
-    // a. Ask the user to enter the account number.
-    int acctNum = promptAccountNumber();
-    cout << endl;
+    DeckOfCards deck;
+    Game g(deck);
+    
+    // a. Ask the user to enter the account number, make sure it exists.
+    bool validAccountNumber = 0;
+    int acctNum;
+    do {
+        acctNum = g.promptUserForAccountNumber();
+        if (!g.accountExists(acctNum)) {
+            cout << "Account doesn't exist." << endl;
+        } else {
+            cout << "Account exists!" << endl;
+            validAccountNumber = 1;
+        }
+    } while(!validAccountNumber);
     
     // b. Ask the user to enter the amount of money he/she wants to bet.
-    double betAmt = promptAmountToBet();
-    cout << endl;
+    bool validBetAmount = 0;
+    double betAmount;
+    double userMoneyAmount = g.getMoneyAmount(acctNum);
+    cout << "You have $" << userMoneyAmount << " available to bet." << endl;
+    do {
+        betAmount = g.promptUserForAmountToBet();
+        if (betAmount < userMoneyAmount) {
+            cout << "You are betting $" << betAmount << "." << endl;
+            validBetAmount = 1;
+        } else {
+            cout << "Can't bet more money than you have." << endl;
+        }
+    } while(!validBetAmount);
     
     // c. The program will randomly select and show the user two cards.
     
     // d. The program will randomly select another two cards and show one card (dealer’s cards).
     
-    
     // e. The program will show the value of user’s cards and ask if the user wants to hit or stand or split.
+    
+    // testers
+    cout << endl <<  "TESTING: " << endl;
+    cout << g.getMoneyAmount(1000)<< endl;
+    g.updateAccount(1000, 100);
+    cout << g.getMoneyAmount(1000)<< endl;
+    g.updateAccount(1000, -100);
+    cout << g.getMoneyAmount(1000)<< endl;
     
     
     //menu
     return 0;
-    //test
 }
 
 

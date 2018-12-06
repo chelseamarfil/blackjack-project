@@ -14,11 +14,4 @@ Player::Player() {
     
 }
 
-Player::Player(int accountNumber) {
-    mAccountNumber = accountNumber;
-}
-
-int Player::getAccountNumber() const {
-    return mAccountNumber;
-}
 

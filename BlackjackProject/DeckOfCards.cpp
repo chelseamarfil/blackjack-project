@@ -9,6 +9,7 @@
 #include "DeckOfCards.h"
 #include <ctime> //for time
 #include <cstdlib> //for srand and rand
+#include <iomanip>
 
 DeckOfCards::DeckOfCards() {
     
@@ -24,27 +25,42 @@ DeckOfCards::DeckOfCards() {
         deckOfCards[i] = Card(faces[i % 13], suits[i/13]);
     }
 }
-/*
-Shuffles a deck of cards using srand
-*/
+
 void DeckOfCards::shuffle() {
-	//srand for randomly generated time
-	srand(time(0));
-	//want to loop through the entire deck and randomize each card
-	for(int i = 0; i < NUMBER_OF_CARDS; i++){
-		int random = rand() % 52 //will give us a position from from 0 to 52
-		//Swap method using a temporary variable 
-		int temp = deckOfCards[i]; //set temp to a card in deck
-		deckOfCards[i] = deckOfCards[random]; //now set that card to a random card in the deck
-		deckOfCards[random] = temp; //finsh the swap by swapping the random card
-	}
-    
+    currentCard = 0;
+    for (int first = 0; first < NUMBER_OF_CARDS; first++) {
+        int second = (rand() +time(0)) % NUMBER_OF_CARDS;
+        Card temp = deckOfCards[first];
+        deckOfCards[first] = deckOfCards[second];
+        deckOfCards[second] = temp;
+    }
 }
+
+///*
+// Shuffles a deck of cards using srand
+// */
+//void DeckOfCards::shuffle() {
+//    //srand for randomly generated time
+//    srand(time(0));
+//    //want to loop through the entire deck and randomize each card
+//    for(int i = 0; i < NUMBER_OF_CARDS; i++){
+//        int random = rand() % 52 //will give us a position from from 0 to 52
+//        //Swap method using a temporary variable
+//        int temp = deckOfCards[i]; //set temp to a card in deck
+//        deckOfCards[i] = deckOfCards[random]; //now set that card to a random card in the deck
+//        deckOfCards[random] = temp; //finsh the swap by swapping the random card
+//    }
+//
+//}
 void DeckOfCards::printDeck() const{
-	for (int i = 0; i < NUMBER_OF_CARDS){
-		
-	}
+    cout << left;
+    for (int i = 0; i < NUMBER_OF_CARDS; i++) {
+        cout << setw(19) << deckOfCards[i].print();
+        if ((i+1) % 4 == 0)
+            cout << endl;
+    }
 }
+         
 Card DeckOfCards:: dealCard() {
     if (currentCard > NUMBER_OF_CARDS) {
         shuffle();
@@ -54,5 +70,3 @@ Card DeckOfCards:: dealCard() {
     }
     return deckOfCards[0];
 }
-
-

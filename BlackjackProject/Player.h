@@ -8,13 +8,14 @@
 
 #ifndef Player_h
 #define Player_h
+#include "Account.h"
 
 class Player {
 public:
     Player();
-    Player(int accountNumber);
+    Player(Account account);
     int getAccountNumber() const;
 private:
-    int mAccountNumber;
-}
+    Account mAccount;
+};
 #endif /* Player_h */

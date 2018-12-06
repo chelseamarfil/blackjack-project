@@ -15,12 +15,21 @@
 #include "DeckOfCards.h"
 
 #include <vector>
+#include <map>
+
+static map<int, double> mAccountMap = {{1000, 100.00}, {1001, 100.00}, {1002, 100.00}, {1003, 100.00}};
 
 class Game {
 public:
     Game();
-    void enterAccountNumber();
-    void enterAmountToBet();
+    Game(DeckOfCards deck);
+    void setPlayer(Player player) {
+        mPlayer = player;
+    }
+    
+    int promptUserForAccountNumber();
+    double promptUserForAmountToBet();
+    
     vector<Card> selectAndShowTwo(); // array or vector
     Card selectAndShowOne();
     vector<Card> showValueOfCards(); // int value or Card value?
@@ -29,9 +38,18 @@ public:
     void stand();
     void split();
     int calcValueOfCards(); // might be the same as showValueOfCards?
+    
+    void addNewAccount(int lastAccountNum);
+    void addNewAccount(int lastAccountNum, double money);
+    
+    double getMoneyAmount(int accountNumber);
+    bool accountExists(int accountNumber);
+    void updateAccount(int accountNumber, double amountToAdd);
+    
+    //printAll(); // might not be necessary
 private:
-    Player player;
-    DeckOfCards deck;
+    Player mPlayer;
+    DeckOfCards mDeck;
 };
 
 #endif /* Game_h */

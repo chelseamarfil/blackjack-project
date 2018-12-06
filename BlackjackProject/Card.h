@@ -18,6 +18,8 @@ public:
     Card(string face, string suit);
     string print() const;
     int getFaceValue();
+    string getFace() const;
+    string getSuit() const;
     
 private:
     string face;

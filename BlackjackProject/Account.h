@@ -10,15 +10,14 @@
 #define Account_h
 
 class Account {
-static int lastAccountNum;
 
 public:
     Account();
-    addNewAccount(int lastAccountNum);
-    findMoneyAmount(int accountNumber);
-    updateAccount(int accountNumber, double amountToAdd);
-    //printAll(); // might not be necessary
+    Account(int accountNum);
+    Account(int accountNum, double money);
 private:
-    map<int accountNumber, double money> accountMap;
-}
+    int mAccountNumber;
+    double mMoney;
+    
+};
 #endif /* Account_h */
