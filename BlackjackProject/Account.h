@@ -19,6 +19,7 @@ public:
     Account(int accountNum, double money);
     int getAccountNumber() const;
     double getMoney() const;
+    void setMoney(double amount);
 private:
     int mAccountNumber;
     double mMoney;

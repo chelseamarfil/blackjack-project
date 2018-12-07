@@ -32,6 +32,10 @@ double Account::getMoney() const {
     return mMoney;
 }
 
+void Account::setMoney(double amount) {
+    mMoney += amount;
+}
+
 
 
 

@@ -37,15 +37,15 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     
     DeckOfCards deck;
-    deck.printDeck();
-    cout << endl << endl << endl;
-    deck.shuffle();
-    deck.printDeck();
+//    deck.printDeck();
+//    cout << endl << endl << endl;
+//    deck.shuffle();
+//    deck.printDeck();
     Game g(deck);
     g.addNewAccount(100);
     g.addNewAccount(100);
     g.addNewAccount(100);
-    g.printMap();
+    g.printAccounts();
 
     // a. Ask the user to enter the account number, make sure it exists.
     bool validAccountNumber = 0;
@@ -60,7 +60,7 @@ int main(int argc, const char * argv[]) {
         }
     } while(!validAccountNumber);
     
-    g.printMap();
+    // g.printAccounts();
 
     
     // b. Ask the user to enter the amount of money he/she wants to bet.
@@ -89,7 +89,7 @@ int main(int argc, const char * argv[]) {
     cout << endl <<  "TESTING: " << endl;
     g.addNewAccount();
     // cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
-    g.printMap();
+    g.printAccounts();
     
     
 //    cout << g.getMoneyAmount(1000)<< endl;
