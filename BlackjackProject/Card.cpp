@@ -53,8 +53,8 @@ int Card::getFaceValue() {
 * print out the face of suit aka Nine of hearts 
 *@return string - a concatination of the face and suit 
 */
-string Card::print() const {
-    return (face + " of " + suit);
+string Card::print() const{
+	return(face + " of " + suit);
 }
 /*
 *@return string - the face aka Nine 

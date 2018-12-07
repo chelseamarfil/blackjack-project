@@ -70,10 +70,7 @@ Card DeckOfCards:: dealCard() {
     }
     if (currentCard < NUMBER_OF_CARDS) {
     	//update the deck of cards by moving index to next card
-    	return(deckOfCards[currentCard]);
-    	//increment where the current card is
-    	currentCard++;
-        //return(deckOfCards[currentCard++]);
+    	return(deckOfCards[currentCard++]);
     }
     return deckOfCards[0];
 }

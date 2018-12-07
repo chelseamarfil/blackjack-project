@@ -19,6 +19,7 @@ class Player {
 public:
     Player();
     Player(Account account);
+    vector<Card> getHand();
 private:
     Account mAccount;
     vector<Card> playersHand;

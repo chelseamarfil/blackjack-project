@@ -19,4 +19,7 @@ Player::Player(Account account) {
     playersHand = vector <Card>();
 }
 
+vector <Card> Player::getHand(){
+	return playersHand;
+} 
 

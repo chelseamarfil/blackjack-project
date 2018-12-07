@@ -55,11 +55,21 @@ int main(int argc, const char * argv[]) {
         }
     } while(!validBetAmount);
     
-    
+    deck.shuffle();
+    deck.printDeck();
     // c. The program will randomly select and show the user two cards.
-    
-    // d. The program will randomly select another two cards and show one card (dealer’s cards).
-    
+	vector<Card> hand = g.getPlayer().getHand();    
+	vector<Card> twoCards = g.selectAndShowTwo(deck,hand); 
+	cout<<"The cards you pulled are: "<<endl;
+	for(int i = 0; i < twoCards.size(); i++){
+		cout<<twoCards[i].print()<<endl;
+	}
+	Card newCard = g.selectAndShowOne(deck, hand); 
+	
+	string s = newCard.print(); 
+	
+    // d. The program will randomly select another two cards and show one card (dealer's cards).
+
     // e. The program will show the value of user’s cards and ask if the user wants to hit or stand or split.
     
     // testers
