@@ -71,6 +71,19 @@ int main(int argc, const char * argv[]) {
     // d. The program will randomly select another two cards and show one card (dealer's cards).
 
     // e. The program will show the value of user’s cards and ask if the user wants to hit or stand or split.
+    // f. If the user decides to stand, decide how the program will select a card for the dealer.
+    // g. If the user decides to hit and the total value is less than 21, the program will select a card for the user. If the total value of the user’s cards is more than 21 during this process, the user will lose; otherwise, decide how the program will select a card for the dealer.
+    // h. If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
+    // i. The winner is determined by the total value of the cards.
+    // -If the value of the user’s cards is more than the dealer’s cards but less than 21, the user wins.
+    // -If the value of the user’s cards and the dealer’s cards are the same, the game is a tie.
+    // -Otherwise, the dealer wins.
+    // j. If the user wins, the money inputted will be doubled. -If the user ties, the money inputted will be split in half. -If the user loses, the user win 0 dollars.
+    // k. The program will ask whether the user wants to play again. If so, these steps are repeated. If not, the program displays the total amount of betting money and the total amount won.
+    // l. Be sure to update the player’s account accordingly.
+
+    
+    
     
     // testers
     cout << endl <<  "TESTING: " << endl;
