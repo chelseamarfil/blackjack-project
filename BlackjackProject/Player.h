@@ -9,6 +9,9 @@
 #ifndef Player_h
 #define Player_h
 #include "Account.h"
+#include <vector>
+
+using namespace std;
 
 class Player {
 public:
@@ -16,5 +19,6 @@ public:
     Player(Account account);
 private:
     Account mAccount;
+    vector<Card> playersHand;
 };
 #endif /* Player_h */

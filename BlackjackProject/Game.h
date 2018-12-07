@@ -36,7 +36,7 @@ public:
     
     vector<Card> showValueOfCards(); // int value or Card value?
     
-    void askHitStandOrSplit();
+    void askHitStandOrSplit(); // done
     
     void hit();
     void stand();
