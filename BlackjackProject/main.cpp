@@ -13,6 +13,7 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
+    //TESTING!!!!
     
     DeckOfCards deck;
 //    deck.printDeck();
@@ -38,9 +39,6 @@ int main(int argc, const char * argv[]) {
         }
     } while(!validAccountNumber);
     g.setPlayer(Player(acctNum));
-    
-    // g.printAccounts();
-
     
     // b. Ask the user to enter the amount of money he/she wants to bet.
     bool validBetAmount = 0;
