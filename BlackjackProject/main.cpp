@@ -84,15 +84,15 @@ int main(int argc, const char * argv[]) {
     // testers
     cout << endl <<  "TESTING: " << endl;
     g.addNewAccount();
-    cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
+    // cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
     g.printMap();
     
     
-    cout << g.getMoneyAmount(1000)<< endl;
-    g.updateAccount(1000, 100);
-    cout << g.getMoneyAmount(1000)<< endl;
-    g.updateAccount(1000, -100);
-    cout << g.getMoneyAmount(1000)<< endl;
+//    cout << g.getMoneyAmount(1000)<< endl;
+//    g.updateAccount(1000, 100);
+//    cout << g.getMoneyAmount(1000)<< endl;
+//    g.updateAccount(1000, -100);
+//    cout << g.getMoneyAmount(1000)<< endl;
     
     
     //menu
