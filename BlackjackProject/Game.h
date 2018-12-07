@@ -31,10 +31,9 @@ public:
     int promptUserForAccountNumber(); //done
     double promptUserForAmountToBet(); //done
     
-    vector<Card> selectAndShowTwo(); 
-    Card selectAndShowOne();
-    
-    vector<Card> showValueOfCards(); // int value or Card value?
+    vector<Card> selectAndShowTwo(DeckOfCards mDeck); // array or vector
+    Card selectAndShowOne(DeckOfCards mDeck);
+    vector<Card> showHand(); // int value or Card value?
     
     void askHitStandOrSplit();
     
