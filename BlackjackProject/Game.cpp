@@ -66,6 +66,7 @@ Card selectAndShowOne(DeckOfCards mDeck, vector<Card> &hand) {
 	return firstCard;
     
 }
+/*
  Updates the money in an account.
  @param accountNumber of the player
  @param amountToAdd to the player's money - param will be negative if user loses money.
