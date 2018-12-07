@@ -8,7 +8,7 @@
 
 #ifndef Card_h
 #define Card_h
-#import <string>
+#include <string>
 
 using namespace std;
 
