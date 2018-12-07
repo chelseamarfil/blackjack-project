@@ -13,9 +13,17 @@ Game::Game(DeckOfCards deck, Player player) {
     mPlayer = player;
 }
 
+Game::Game(DeckOfCards deck) {
+    mDeck = deck;
+}
+
 void Game :: setPlayer(Player player) {
-        mPlayer = player;
+    mPlayer = player;
     
+}
+
+Player Game::getPlayer() const {
+    return mPlayer;
 }
 
 /** Ask the user to enter the account number.
