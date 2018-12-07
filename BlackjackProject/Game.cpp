@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <iostream>
-
+#include<vector>
 
 using namespace std;
 
@@ -37,14 +37,21 @@ double Game::promptUserForAmountToBet() {
     return betAmt;
 }
 
-///** Randomly select and show the user two cards.
-// @return
-// */
-//vector<Card> selectAndShowTwo() {
-//    DeckOfCards deck;
-//}
-
-/**
+/** Randomly select and show the user two cards.
+ @return a vector of the two cards
+ */
+vector<Card> selectAndShowTwo(DeckOfCards mDeck) {
+	//Deal two from the array
+	Card fistCard = mDeck.dealCard();
+	Card secondCard = mDeck.dealCard(); 
+	
+	vector<Card> current;
+	current.push_back(firstCard);
+	current.push_back(secondCard);
+	
+	return current;
+    
+}
  Updates the money in an account.
  @param accountNumber of the player
  @param amountToAdd to the player's money - param will be negative if user loses money.
