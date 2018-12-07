@@ -20,7 +20,7 @@
 static map<int, double> mAccountMap;
 // = {{1000, 100.00}, {1001, 100.00}, {1002, 100.00}, {1003, 100.00}}
 
-static int accountNumberCounter = 1000;
+//static int accountNumberCounter = 1000;
 
 class Game {
 public:

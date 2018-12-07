@@ -37,6 +37,10 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     
     DeckOfCards deck;
+    deck.printDeck();
+    cout << endl << endl << endl;
+    deck.shuffle();
+    deck.printDeck();
     Game g(deck);
     g.addNewAccount(100);
     g.addNewAccount(100);
