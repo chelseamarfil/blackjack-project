@@ -15,6 +15,8 @@ public:
     Account();
     Account(int accountNum);
     Account(int accountNum, double money);
+    int getAccountNumber() const;
+    double getMoney() const;
 private:
     int mAccountNumber;
     double mMoney;

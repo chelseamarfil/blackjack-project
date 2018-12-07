@@ -17,7 +17,10 @@
 #include <vector>
 #include <map>
 
-static map<int, double> mAccountMap = {{1000, 100.00}, {1001, 100.00}, {1002, 100.00}, {1003, 100.00}};
+static map<int, double> mAccountMap;
+// = {{1000, 100.00}, {1001, 100.00}, {1002, 100.00}, {1003, 100.00}}
+
+static int accountNumberCounter = 1000;
 
 class Game {
 public:
@@ -39,14 +42,14 @@ public:
     void split();
     int calcValueOfCards(); // might be the same as showValueOfCards?
     
-    void addNewAccount(int lastAccountNum);
-    void addNewAccount(int lastAccountNum, double money);
+    void addNewAccount();
+    void addNewAccount(double money);
     
     double getMoneyAmount(int accountNumber);
     bool accountExists(int accountNumber);
     void updateAccount(int accountNumber, double amountToAdd);
     
-    //printAll(); // might not be necessary
+    void printMap(); // might not be necessary
 private:
     Player mPlayer;
     DeckOfCards mDeck;

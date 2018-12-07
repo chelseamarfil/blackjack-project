@@ -3,6 +3,10 @@
 
 using namespace std;
 
+Game::Game() {
+    mDeck = DeckOfCards();
+}
+
 Game::Game(DeckOfCards deck) {
     mDeck = deck;
 }
@@ -51,10 +55,19 @@ void Game::updateAccount(int accountNumber, double amountToAdd) {
 /**
  Adds a new account to the map. New account numbers will be incremented by 1, and will start off with $0.
  */
-void Game::addNewAccount(int lastAccountNumber) {
-    lastAccountNumber++;
-    mAccountMap[lastAccountNumber] = 0;
+void Game::addNewAccount() {
+    accountNumberCounter++;
+    mAccountMap[accountNumberCounter] = 0;
 }
+
+/**
+ Adds a new account to the map. New account numbers will be incremented by 1, and will start off with a given amount of money.
+ */
+void Game::addNewAccount(double money) {
+    accountNumberCounter++;
+    mAccountMap[accountNumberCounter] = money;
+}
+
 
 /**
  Gets the amount of money associated with an account number.
@@ -86,5 +99,13 @@ bool Game::accountExists(int accountNumber) {
         return 0;
     } else {
         return 1;
+    }
+}
+
+void Game::printMap() {
+    for (map<int, double>::iterator pos = mAccountMap.begin();
+         pos != mAccountMap.end(); pos++)
+    {
+        cout << pos->first << ": " << pos->second << "\n";
     }
 }

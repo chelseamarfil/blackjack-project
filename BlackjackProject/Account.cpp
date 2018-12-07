@@ -25,6 +25,13 @@ Account::Account(int accountNum, double money) {
     mMoney = money;
 }
 
+int Account::getAccountNumber() const {
+    return mAccountNumber;
+}
+double Account::getMoney() const {
+    return mMoney;
+}
+
 
 
 

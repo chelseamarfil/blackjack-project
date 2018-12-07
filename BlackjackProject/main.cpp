@@ -38,7 +38,11 @@ int main(int argc, const char * argv[]) {
     
     DeckOfCards deck;
     Game g(deck);
-    
+    g.addNewAccount(100);
+    g.addNewAccount(100);
+    g.addNewAccount(100);
+    g.printMap();
+
     // a. Ask the user to enter the account number, make sure it exists.
     bool validAccountNumber = 0;
     int acctNum;
@@ -51,6 +55,9 @@ int main(int argc, const char * argv[]) {
             validAccountNumber = 1;
         }
     } while(!validAccountNumber);
+    
+    g.printMap();
+
     
     // b. Ask the user to enter the amount of money he/she wants to bet.
     bool validBetAmount = 0;
@@ -67,6 +74,7 @@ int main(int argc, const char * argv[]) {
         }
     } while(!validBetAmount);
     
+    
     // c. The program will randomly select and show the user two cards.
     
     // d. The program will randomly select another two cards and show one card (dealer’s cards).
@@ -75,6 +83,11 @@ int main(int argc, const char * argv[]) {
     
     // testers
     cout << endl <<  "TESTING: " << endl;
+    g.addNewAccount();
+    cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
+    g.printMap();
+    
+    
     cout << g.getMoneyAmount(1000)<< endl;
     g.updateAccount(1000, 100);
     cout << g.getMoneyAmount(1000)<< endl;
