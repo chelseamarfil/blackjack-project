@@ -78,7 +78,7 @@ If the user decides to stand, decide how the program will
 select a card for the dealer
 **/
 
-void stand ()
+void Game :: stand ()
 {
     int decision;
     cin>>decision;
