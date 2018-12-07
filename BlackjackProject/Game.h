@@ -25,7 +25,7 @@ static vector<Account> accountsVector;
 class Game {
 public:
     Game(); //done
-    Game(DeckOfCards deck); //done
+    Game(DeckOfCards deck, Player player); //done
     void setPlayer(Player player); // done - how do we call this?
     
     int promptUserForAccountNumber(); //done

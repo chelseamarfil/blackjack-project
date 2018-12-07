@@ -9,6 +9,7 @@
 #ifndef Player_h
 #define Player_h
 #include "Account.h"
+#include "Card.h"
 #include <vector>
 
 using namespace std;

@@ -12,28 +12,6 @@
 #include <map>
 using namespace std;
 
-
-///**
-//If the user decides to stand, decide how the program will
-//select a card for the dealer
-//**/
-//
-//void stand ()
-//{
-//    int decision;
-//    cin>>decision;
-//
-//    if (decision < 5 )
-//    {
-//        hit();
-//    }
-//
-//    else if (decision > 5)
-//    {
-//        split();
-//    }
-//}
-
 int main(int argc, const char * argv[]) {
     
     DeckOfCards deck;
@@ -41,7 +19,6 @@ int main(int argc, const char * argv[]) {
 //    cout << endl << endl << endl;
 //    deck.shuffle();
 //    deck.printDeck();
-    Game g(deck);
     g.addNewAccount(100);
     g.addNewAccount(100);
     g.addNewAccount(100);
@@ -59,6 +36,8 @@ int main(int argc, const char * argv[]) {
             validAccountNumber = 1;
         }
     } while(!validAccountNumber);
+    
+    Game g(deck);
     
     // g.printAccounts();
 

@@ -8,8 +8,9 @@ Game::Game() {
     mDeck = DeckOfCards();
 }
 
-Game::Game(DeckOfCards deck) {
+Game::Game(DeckOfCards deck, Player player) {
     mDeck = deck;
+    mPlayer = player;
 }
 
 void Game :: setPlayer(Player player) {
