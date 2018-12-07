@@ -39,18 +39,32 @@ double Game::promptUserForAmountToBet() {
 }
 
 /** Randomly select and show the user two cards.
+ * Only happens once at the beginning of the game
  @return a vector of the two cards
  */
-vector<Card> selectAndShowTwo(DeckOfCards mDeck) {
+vector<Card> selectAndShowTwo(DeckOfCards mDeck, vector<Card> hand) {
 	//Deal two from the array
-	Card fistCard = mDeck.dealCard();
+	Card firstCard = mDeck.dealCard();
 	Card secondCard = mDeck.dealCard(); 
 	
-	vector<Card> current;
-	current.push_back(firstCard);
-	current.push_back(secondCard);
+	hand.push_back(firstCard);
+	hand.push_back(secondCard);
 	
-	return current;
+	return hand;
+    
+}
+
+/** Randomly select and show the user a card
+ @return their card
+ */
+Card selectAndShowOne(DeckOfCards mDeck, vector<Card> &hand) {
+	//Deal two from the array
+	Card firstCard = mDeck.dealCard(); 
+	
+	//&hand should update the hand because we pass a refrence
+	hand.push_back(firstCard);
+	
+	return firstCard;
     
 }
  Updates the money in an account.
@@ -70,7 +84,6 @@ void Game::updateAccount(int accountNumber, double amountToAdd) {
 //        mAccountMap[accountNumber] = getMoneyAmount(accountNumber) + amountToAdd;
 //    }
 }
-
 /**
  Adds a new account to the map. New account numbers will be incremented by 1, and will start off with $0.
  */
@@ -80,7 +93,6 @@ void Game::addNewAccount() {
     accountsVector.push_back(a);
     //mAccountMap[accountNumberCounter] = 0;
 }
-
 /**
  Adds a new account to the map. New account numbers will be incremented by 1, and will start off with a given amount of money.
  */
@@ -90,28 +102,23 @@ void Game::addNewAccount(double money) {
     accountsVector.push_back(a);
     //mAccountMap[accountNumberCounter] = money;
 }
-
 /**
 If the user decides to stand, decide how the program will
 select a card for the dealer
 **/
-
 void Game :: stand ()
 {
     int decision;
     cin>>decision;
-
     if (decision < 5 )
     {
         hit();
     }
-
     else if (decision > 5)
     {
         split();
     }
 }
-
 /**
 Asks the user if they want to Hit, Stand, or Split.
 **/
@@ -135,8 +142,6 @@ void Game :: askHitStandOrSplit()
 		split();
 	}
 }
-
-
 /**
  Gets the amount of money associated with an account number.
  @param accountNumber the account number being searched
@@ -164,9 +169,7 @@ double Game::getMoneyAmount(int accountNumber) {
 //        return -1;
 //    }
 }
-
 /**
-
  */
 bool Game::accountExists(int accountNumber) {
     for(int i = 0; i < accountsVector.size(); i++) {
@@ -182,7 +185,6 @@ bool Game::accountExists(int accountNumber) {
 //        return 1;
 //    }
 }
-
 //void Game::printMap() {
 //    for (map<int, double>::iterator pos = mAccountMap.begin();
 //         pos != mAccountMap.end(); pos++)
@@ -190,7 +192,6 @@ bool Game::accountExists(int accountNumber) {
 //        cout << pos->first << ": " << pos->second << "\n";
 //    }
 //}
-
 void Game::printAccounts() {
     for(int i = 0; i < accountsVector.size(); i++) {
         cout << accountsVector[i].getAccountNumber() << ": " << accountsVector[i].getMoney() << endl;
