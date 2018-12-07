@@ -35,7 +35,7 @@ public:
     Card selectAndShowOne(DeckOfCards mDeck);
     vector<Card> showHand(); // int value or Card value?
     
-    void askHitStandOrSplit();
+    void askHitStandOrSplit(); // done
     
     void hit();
     void stand();
