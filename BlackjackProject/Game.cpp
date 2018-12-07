@@ -11,6 +11,11 @@ Game::Game(DeckOfCards deck) {
     mDeck = deck;
 }
 
+void Game :: setPlayer(Player player) 
+	{
+        mPlayer = player;
+    }
+
 /** Ask the user to enter the account number.
  @return acctNum - the user's account number.
  */
