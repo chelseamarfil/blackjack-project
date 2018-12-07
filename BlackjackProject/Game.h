@@ -26,19 +26,23 @@ class Game {
 public:
     Game(); //done
     Game(DeckOfCards deck); //done
-    void setPlayer(Player player);
+    void setPlayer(Player player); // done - how do we call this?
     
     int promptUserForAccountNumber(); //done
     double promptUserForAmountToBet(); //done
     
     vector<Card> selectAndShowTwo(); 
     Card selectAndShowOne();
+    
     vector<Card> showValueOfCards(); // int value or Card value?
+    
     void askHitStandOrSplit();
+    
     void hit();
     void stand();
     void split();
-    int calcValueOfCards(); // might be the same as showValueOfCards?
+    
+    int calcValueOfCards(); 
     
     void addNewAccount(); //done
     void addNewAccount(double money); //done
