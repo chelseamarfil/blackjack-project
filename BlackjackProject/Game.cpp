@@ -1,9 +1,14 @@
 #include "Game.h"
 #include <iostream>
+<<<<<<< HEAD
 #include <ctime> //for time
 #include <cstdlib> //for srand and rand
 #include <iomanip>
 #include <vector>
+=======
+#include<vector>
+
+>>>>>>> 27723a5e47cd7e75763a43053cf007b1169c0089
 using namespace std;
 
 Game::Game() {
@@ -35,7 +40,11 @@ double Game::promptUserForAmountToBet() {
 }
 
 /** Randomly select and show the user two cards.
+<<<<<<< HEAD
  @return
+=======
+ @return a vector of the two cards
+>>>>>>> 27723a5e47cd7e75763a43053cf007b1169c0089
  */
 vector<Card> selectAndShowTwo(DeckOfCards mDeck) {
 	//Deal two from the array
@@ -49,8 +58,11 @@ vector<Card> selectAndShowTwo(DeckOfCards mDeck) {
 	return current;
     
 }
+<<<<<<< HEAD
 
 /**
+=======
+>>>>>>> 27723a5e47cd7e75763a43053cf007b1169c0089
  Updates the money in an account.
  @param accountNumber of the player
  @param amountToAdd to the player's money - param will be negative if user loses money.

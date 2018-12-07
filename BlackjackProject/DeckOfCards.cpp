@@ -61,12 +61,19 @@ void DeckOfCards::printDeck() const{
     }
 }
          
+         
 Card DeckOfCards:: dealCard() {
+	//if currentCard - index that moves along the deck of cards 
     if (currentCard > NUMBER_OF_CARDS) {
-        shuffle();
+        //shuffle();
+    	cout<<"No more cards in deck."<<endl;
     }
     if (currentCard < NUMBER_OF_CARDS) {
-        return(deckOfCards[currentCard++]);
+    	//update the deck of cards by moving index to next card
+    	return(deckOfCards[currentCard]);
+    	//increment where the current card is
+    	currentCard++;
+        //return(deckOfCards[currentCard++]);
     }
     return deckOfCards[0];
 }

@@ -14,7 +14,6 @@ class Player {
 public:
     Player();
     Player(Account account);
-    int getAccountNumber() const;
 private:
     Account mAccount;
 };

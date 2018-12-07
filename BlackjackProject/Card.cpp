@@ -49,6 +49,22 @@ int Card::getFaceValue() {
     }
 }
 
+/*
+* print out the face of suit aka Nine of hearts 
+*@return string - a concatination of the face and suit 
+*/
 string Card::print() const {
     return (face + " of " + suit);
+}
+/*
+*@return string - the face aka Nine 
+*/
+string Card::getFace() const {
+	return  face; 
+}
+/*
+*@return string - the suit - SPADES, DIAMONDS, HEARTS, CLUBS 
+*/
+string Card::getSuit() const{
+	return suit;
 }
