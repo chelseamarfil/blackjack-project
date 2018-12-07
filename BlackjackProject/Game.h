@@ -56,6 +56,7 @@ public:
     void printAccounts();
 private:
     Player mPlayer;
+    Player mDealer;
     DeckOfCards mDeck;
 };
 

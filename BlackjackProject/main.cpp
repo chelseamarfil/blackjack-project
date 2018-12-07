@@ -57,6 +57,7 @@ int main(int argc, const char * argv[]) {
     
     deck.shuffle();
     deck.printDeck();
+    
     // c. The program will randomly select and show the user two cards.
 	vector<Card> hand = g.getPlayer().getHand();    
 	vector<Card> twoCards = g.selectAndShowTwo(deck,hand); 
