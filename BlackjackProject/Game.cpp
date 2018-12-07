@@ -94,6 +94,30 @@ void Game :: stand ()
     }
 }
 
+/**
+Asks the user if they want to Hit, Stand, or Split.
+**/
+void Game :: askHitStandOrSplit()
+{
+	string decision;
+	cin >> decision;
+	
+	if (decision == "hit" || decision == "Hit")
+	{
+		hit();
+	}
+	
+	else if(decision == "stand" || decision == "Stand")
+	{
+		stand();
+	}
+	
+	else if (decision == "split" || decision == "Split")
+	{
+		split();
+	}
+}
+
 
 /**
  Gets the amount of money associated with an account number.
