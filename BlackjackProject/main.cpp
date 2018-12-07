@@ -47,10 +47,13 @@ int main(int argc, const char * argv[]) {
     cout << "You have $" << userMoneyAmount << " available to bet." << endl;
     do {
         betAmount = g.promptUserForAmountToBet();
-        if (betAmount < userMoneyAmount) {
+        if (betAmount <= userMoneyAmount) 
+		{
             cout << "You are betting $" << betAmount << "." << endl;
             validBetAmount = 1;
-        } else {
+        } 
+		else 
+		{
             cout << "Can't bet more money than you have." << endl;
         }
     } while(!validBetAmount);
