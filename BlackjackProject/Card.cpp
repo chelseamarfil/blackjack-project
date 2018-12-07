@@ -65,6 +65,6 @@ string Card::getFace() const {
 /*
 *@return string - the suit - SPADES, DIAMONDS, HEARTS, CLUBS 
 */
-string getSuit() const{
+string Card::getSuit() const{
 	return suit;
 }
