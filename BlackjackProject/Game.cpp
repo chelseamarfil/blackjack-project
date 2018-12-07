@@ -12,6 +12,11 @@ Game::Game(DeckOfCards deck) {
     mDeck = deck;
 }
 
+void Game :: setPlayer(Player player) 
+	{
+        mPlayer = player;
+    }
+
 /** Ask the user to enter the account number.
  @return acctNum - the user's account number.
  */
@@ -76,6 +81,51 @@ void Game::addNewAccount(double money) {
     Account a(accountNumberCounter, money);
     accountsVector.push_back(a);
     //mAccountMap[accountNumberCounter] = money;
+}
+
+/**
+If the user decides to stand, decide how the program will
+select a card for the dealer
+**/
+
+void Game :: stand ()
+{
+    int decision;
+    cin>>decision;
+
+    if (decision < 5 )
+    {
+        hit();
+    }
+
+    else if (decision > 5)
+    {
+        split();
+    }
+}
+
+/**
+Asks the user if they want to Hit, Stand, or Split.
+**/
+void Game :: askHitStandOrSplit()
+{
+	string decision;
+	cin >> decision;
+	
+	if (decision == "hit" || decision == "Hit")
+	{
+		hit();
+	}
+	
+	else if(decision == "stand" || decision == "Stand")
+	{
+		stand();
+	}
+	
+	else if (decision == "split" || decision == "Split")
+	{
+		split();
+	}
 }
 
 
