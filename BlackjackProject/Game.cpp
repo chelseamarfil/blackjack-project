@@ -38,18 +38,32 @@ double Game::promptUserForAmountToBet() {
 }
 
 /** Randomly select and show the user two cards.
+ * Only happens once at the beginning of the game
  @return a vector of the two cards
  */
-vector<Card> selectAndShowTwo(DeckOfCards mDeck) {
+vector<Card> selectAndShowTwo(DeckOfCards mDeck, vector<Card> hand) {
 	//Deal two from the array
-	Card fistCard = mDeck.dealCard();
+	Card firstCard = mDeck.dealCard();
 	Card secondCard = mDeck.dealCard(); 
 	
-	vector<Card> current;
-	current.push_back(firstCard);
-	current.push_back(secondCard);
+	hand.push_back(firstCard);
+	hand.push_back(secondCard);
 	
-	return current;
+	return hand;
+    
+}
+
+/** Randomly select and show the user a card
+ @return their card
+ */
+Card selectAndShowOne(DeckOfCards mDeck, vector<Card> &hand) {
+	//Deal two from the array
+	Card firstCard = mDeck.dealCard(); 
+	
+	//&hand should update the hand because we pass a refrence
+	hand.push_back(firstCard);
+	
+	return firstCard;
     
 }
  Updates the money in an account.
