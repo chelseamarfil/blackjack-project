@@ -14,4 +14,9 @@ Player::Player() {
     
 }
 
+Player::Player(Account account) {
+    mAccount = account;
+    playersHand = vector <Card>();
+}
+
 

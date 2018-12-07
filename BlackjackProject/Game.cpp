@@ -8,13 +8,22 @@ Game::Game() {
     mDeck = DeckOfCards();
 }
 
+Game::Game(DeckOfCards deck, Player player) {
+    mDeck = deck;
+    mPlayer = player;
+}
+
 Game::Game(DeckOfCards deck) {
     mDeck = deck;
 }
 
 void Game :: setPlayer(Player player) {
-        mPlayer = player;
+    mPlayer = player;
     
+}
+
+Player Game::getPlayer() const {
+    return mPlayer;
 }
 
 /** Ask the user to enter the account number.
@@ -41,7 +50,7 @@ double Game::promptUserForAmountToBet() {
  * Only happens once at the beginning of the game
  @return a vector of the two cards
  */
-vector<Card> selectAndShowTwo(DeckOfCards mDeck, vector<Card> hand) {
+vector<Card> Game :: selectAndShowTwo(DeckOfCards mDeck, vector<Card> hand) {
 	//Deal two from the array
 	Card firstCard = mDeck.dealCard();
 	Card secondCard = mDeck.dealCard(); 
@@ -56,7 +65,7 @@ vector<Card> selectAndShowTwo(DeckOfCards mDeck, vector<Card> hand) {
 /** Randomly select and show the user a card
  @return their card
  */
-Card selectAndShowOne(DeckOfCards mDeck, vector<Card> &hand) {
+Card Game :: selectAndShowOne(DeckOfCards mDeck, vector<Card> &hand) {
 	//Deal two from the array
 	Card firstCard = mDeck.dealCard(); 
 	
