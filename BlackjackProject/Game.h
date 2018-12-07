@@ -26,9 +26,7 @@ class Game {
 public:
     Game();
     Game(DeckOfCards deck);
-    void setPlayer(Player player) {
-        mPlayer = player;
-    }
+    void setPlayer(Player player);
     
     int promptUserForAccountNumber();
     double promptUserForAmountToBet();
