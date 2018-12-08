@@ -20,8 +20,11 @@ public:
     Player();
     Player(Account account);
     vector<Card> getHand();
+    vector<Card> getDealersHand();
+    Account getAccount();
 private:
     Account mAccount;
     vector<Card> playersHand;
+    vector<Card> dealersHand;
 };
 #endif /* Player_h */

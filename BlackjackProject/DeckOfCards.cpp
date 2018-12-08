@@ -3,7 +3,7 @@
 //  BlackjackProject
 //
 //  Created by Chelsea Marfil on 10/29/18.
-//  Copyright Â© 2018 ChelseaMarfil. All rights reserved.
+//  Copyright © 2018 ChelseaMarfil. All rights reserved.
 //
 
 #include "DeckOfCards.h"

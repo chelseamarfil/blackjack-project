@@ -25,26 +25,28 @@ static vector<Account> accountsVector;
 class Game {
 public:
     Game(); //done
-    Game(DeckOfCards deck);
-    Game(DeckOfCards deck, Player player); //done
-    
+
+    Game(DeckOfCards &deck);
+    Game(DeckOfCards &deck, Player player); //done
     void setPlayer(Player player); // done
+    void setDealer(Player dealer);
     Player getPlayer() const;
+    Player getDealer() const; 
     
     int promptUserForAccountNumber(); //done
     double promptUserForAmountToBet(); //done
     
-    vector<Card> selectAndShowTwo(DeckOfCards mDeck, vector<Card>& hand); // array or vector
-    Card selectAndShowOne(DeckOfCards mDeck, vector<Card>& hand);
-    vector<Card> showHand(vector<Card> hand); // int value or Card value?
+    vector<Card> selectAndShowTwo(DeckOfCards &mDeck, vector<Card> &hand); //done
+    Card selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand); //done
+    void showHand(vector<Card> &hand); //done
     
-    void askHitStandOrSplit(); // done
+    void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand); // done
     
-    void hit();
-    void stand();
+    int hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
+    void stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand );
     void split();
     
-    int calcValueOfCards(); 
+    int calcValueOfHand(vector<Card> &hand); 
     
     void addNewAccount(); //done
     void addNewAccount(double money); //done
@@ -58,6 +60,8 @@ public:
 private:
     Player mPlayer;
     Player mDealer;
+    int playerScore;
+    int dealerScore;
     DeckOfCards mDeck;
 };
 

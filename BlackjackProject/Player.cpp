@@ -17,9 +17,20 @@ Player::Player() {
 Player::Player(Account account) {
     mAccount = account;
     playersHand = vector <Card>();
+    dealersHand = vector <Card>();
 }
 
 vector <Card> Player::getHand(){
 	return playersHand;
 } 
+
+vector <Card> Player::getDealersHand(){
+	return dealersHand;
+}
+
+Account Player::getAccount(){
+	return mAccount;
+}
+
+
 

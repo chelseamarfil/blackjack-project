@@ -8,24 +8,31 @@ Game::Game() {
     mDeck = DeckOfCards();
 }
 
-Game::Game(DeckOfCards deck, Player player) {
+Game::Game(DeckOfCards& deck, Player player) {
     mDeck = deck;
     mPlayer = player;
+    playerScore = 0;
 }
 
-Game::Game(DeckOfCards deck) {
+Game::Game(DeckOfCards& deck) {
     mDeck = deck;
+    playerScore = 0;
 }
 
 void Game :: setPlayer(Player player) {
     mPlayer = player;
     
 }
-
+void Game::setDealer(Player dealer){
+	mDealer = dealer;
+} 
 Player Game::getPlayer() const {
     return mPlayer;
 }
 
+Player Game::getDealer() const{
+	return mDealer;
+}
 /** Ask the user to enter the account number.
  @return acctNum - the user's account number.
  */
@@ -50,7 +57,7 @@ double Game::promptUserForAmountToBet() {
  * Only happens once at the beginning of the game
  @return a vector of the two cards
  */
-vector<Card> Game :: selectAndShowTwo(DeckOfCards mDeck, vector<Card> &hand) {
+vector<Card> Game::selectAndShowTwo(DeckOfCards &mDeck, vector<Card> &hand) {
 	//Deal two from the array
 	Card firstCard = mDeck.dealCard();
 	Card secondCard = mDeck.dealCard(); 
@@ -65,7 +72,7 @@ vector<Card> Game :: selectAndShowTwo(DeckOfCards mDeck, vector<Card> &hand) {
 /** Randomly select and show the user a card
  @return their card
  */
-Card Game::selectAndShowOne(DeckOfCards mDeck, vector<Card> &hand) {
+Card Game::selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand) {
 	//Deal two from the array
 	Card firstCard = mDeck.dealCard(); 
 	
@@ -74,6 +81,45 @@ Card Game::selectAndShowOne(DeckOfCards mDeck, vector<Card> &hand) {
 	
 	return firstCard;
     
+}
+
+void Game::showHand(vector<Card> &hand){
+	for(int i=0; i < hand.size(); i++){
+		cout<<hand[i].print()<<" | ";
+		
+	}
+	cout<<endl;
+}
+
+int Game::calcValueOfHand(vector<Card> &hand){
+	playerScore = 0; 
+	for(int i=0; i < hand.size(); i++){
+		//if the card is an Ace...
+		if(hand[i].getFaceValue() == 1){
+			//And if the score is less than 10
+			if(playerScore <= 10){
+				
+				//make the ace worth 11 and add it to score
+				playerScore += 11;
+				//cout<<"playerscore1: "<<playerScore<<endl;
+			}
+			else{
+				
+				
+				playerScore += 1;
+				//cout<<"playerscore2: "<<playerScore<<endl;
+			}
+		}
+		else{
+			
+			playerScore += hand[i].getFaceValue();
+			//cout<<"playerscore3: "<<playerScore<<endl;
+			
+		} 
+		
+	}
+	return playerScore;
+	
 }
 /*
  Updates the money in an account.
@@ -115,20 +161,33 @@ void Game::addNewAccount(double money) {
 If the user decides to stand, decide how the program will
 select a card for the dealer
 **/
-void Game :: stand ()
+void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand )
 {
     int decision;
     cin>>decision;
     if (decision < 5 )
     {
-        hit();
+        hit(mDeck, hand, dealerHand );
     }
     else if (decision > 5)
     {
         split();
     }
 }
-void Game :: hit(){
+int Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand){
+	if(playerScore < 21){
+		cout<<"Your new card is: "<<selectAndShowOne(mDeck, hand).print()<<endl;
+		//return 1 if the game still continues
+		return(1);
+	}
+	else if(playerScore > 21 ){
+		//return 0 if the game ended 
+		return(0);
+	}
+	else{
+		cout<<selectAndShowOne(mDeck, dealerHand).print()<<endl;
+		return(2);
+	}
 	
 }
 void Game :: split(){
@@ -137,19 +196,20 @@ void Game :: split(){
 /**
 Asks the user if they want to Hit, Stand, or Split.
 **/
-void Game :: askHitStandOrSplit()
+void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
 {
+	cout<<"Do you want to hit, stand, or split?"<<endl;
 	string decision;
 	cin >> decision;
 	
 	if (decision == "hit" || decision == "Hit")
 	{
-		hit();
+		hit(mDeck, hand, dealerHand);
 	}
 	
 	else if(decision == "stand" || decision == "Stand")
 	{
-		stand();
+		stand(mDeck, hand, dealerHand);
 	}
 	
 	else if (decision == "split" || decision == "Split")
