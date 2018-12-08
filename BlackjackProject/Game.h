@@ -27,6 +27,7 @@ public:
     Game(); //done
     Game(DeckOfCards deck);
     Game(DeckOfCards deck, Player player); //done
+    
     void setPlayer(Player player); // done
     Player getPlayer() const;
     
