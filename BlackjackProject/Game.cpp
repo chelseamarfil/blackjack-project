@@ -69,17 +69,17 @@ vector<Card> Game::selectAndShowTwo(DeckOfCards &mDeck, vector<Card> &hand) {
     
 }
 
-/** Randomly select and show the user a card
+/** Randomly select and show the user a card.
  @return their card
  */
 Card Game::selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand) {
-	//Deal two from the array
-	Card firstCard = mDeck.dealCard(); 
-	
-	//&hand should update the hand because we pass a refrence
-	hand.push_back(firstCard);
-	
-	return firstCard;
+    //Deal two from the array
+    Card firstCard = mDeck.dealCard();
+    
+    //&hand should update the hand because we pass a refrence
+    hand.push_back(firstCard);
+    
+    return firstCard;
     
 }
 
@@ -92,7 +92,7 @@ void Game::showHand(vector<Card> &hand){
 }
 
 int Game::calcValueOfHand(vector<Card> &hand){
-	playerScore = 0; 
+	playerScore = 0;
 	for(int i=0; i < hand.size(); i++){
 		//if the card is an Ace...
 		if(hand[i].getFaceValue() == 1){
@@ -176,7 +176,7 @@ void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealer
 }
 int Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand){
 	if(playerScore < 21){
-		cout<<"Your new card is: "<<selectAndShowOne(mDeck, hand).print()<<endl;
+		cout<<"Your new card is: "<< selectAndShowOne(mDeck, hand).print()<<endl;
 		//return 1 if the game still continues
 		return(1);
 	}

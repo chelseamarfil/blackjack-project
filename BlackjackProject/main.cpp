@@ -19,12 +19,6 @@ void updateAccount(int accountNumber, double amountToAdd) {
             accountsVector[i].setMoney(amountToAdd);
         }
     }
-//    map<int, double>::iterator p = mAccountMap.find(accountNumber);
-//    if (p == mAccountMap.end()) {
-//        cout << "Account doesn't exist." << endl;
-//    } else {
-//        mAccountMap[accountNumber] = getMoneyAmount(accountNumber) + amountToAdd;
-//    }
 }
 
 bool accountExists(int accountNumber) {
@@ -79,7 +73,6 @@ int main(int argc, const char * argv[]) {
 	    int acctNum;
 	    do {
 	        acctNum = g.promptUserForAccountNumber();
-            cout << acctNum;
 	        if (!accountExists(acctNum)) {
 	            cout << "Account doesn't exist." << endl;
 	        } else {
@@ -88,12 +81,13 @@ int main(int argc, const char * argv[]) {
 	        }
 	    } while(!validAccountNumber);
         
+        // Set the player of the game.
 	    g.setPlayer(Player(acctNum));
 	    
-	    //set dealer
+	    // Set the dealer of the game.
 	    g.setDealer(Player(7777)); 
 	    
-	    // b. Ask the user to enter the amount of money he/she wants to bet.
+	    // b. Ask the user to enter the amount of money he/she wants to bet, make sure it's a valid amount.
 	    bool validBetAmount = 0;
 	    double betAmount;
 	    double userMoneyAmount = getMoneyAmount(acctNum);
@@ -108,72 +102,65 @@ int main(int argc, const char * argv[]) {
 	        }
 	    } while(!validBetAmount);
 	    
+        // Shuffle the card deck.
+        cout << endl << endl;
 	    deck->shuffle();
 	    deck->printDeck();
-	    // c. The program will randomly select and show the user two cards.
-		vector<Card> hand = g.getPlayer().getHand();    
-		vector<Card> twoCards = g.selectAndShowTwo(*deck,hand); 
-		cout<<"The cards you pulled are: "<<endl;
-		for(int i = 0; i < twoCards.size(); i++){
-			cout<<twoCards[i].print()<<endl;
+        cout << endl << endl;
+        
+	    // c. The program will select and show the user two cards from the shuffled deck.
+		vector<Card> playersHand = g.getPlayer().getHand();
+		vector<Card> playersCards = g.selectAndShowTwo(*deck, playersHand);
+		cout << "Your cards are: " << endl;
+		for(int i = 0; i < playersCards.size(); i++){
+			cout << playersCards[i].print() << endl;
 		}
-	
 		
-	    // d. The program will randomly select another two cards and show one card (dealer's cards).
-		vector<Card> dealerHand = g.getDealer().getHand();
-		vector<Card> twoDealerCards = g.selectAndShowTwo(*deck,dealerHand); 
-		cout<<"The cards the dealer pulled is: "<<endl;
-		for(int i = 0; i < 1; i++){
-			cout<<twoDealerCards[i].print()<<endl;
-		}
-		cout<<endl;
+	    // d. The program will select another two cards and show one card (dealer's cards).
+        vector<Card> dealersHand = g.getDealer().getHand();
+        vector<Card> dealersCards = g.selectAndShowTwo(*deck,dealersHand);
+        cout << endl << endl << "One of the dealer's cards is: " << endl;
+        cout << dealersCards[0].print();
+        cout << endl << endl;
+        
 	    // e. The program will show the value of user's cards and ask if the user wants to hit or stand or split.
-	    
-	    cout<<"Your current cards in your hand are: "<<endl;
-	    g.showHand(hand);
-	    //get score 
-	    cout<<"Your current hand value is: "<< g.calcValueOfHand(hand)<<endl;
-
-		g.askHitStandOrSplit(*deck, hand, dealerHand);
-		cout<<"hand value: "<<g.calcValueOfHand(hand)<<endl;
-	    if(g.calcValueOfHand(hand) > 21){
+	    //cout<<"The cards in your hand are: "<<endl;
+	    //g.showHand(playersHand);
+	    cout<<"The value of your hand is: "<< g.calcValueOfHand(playersHand)<<endl;
+        
+		g.askHitStandOrSplit(*deck, playersHand, dealersHand);
+		cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
+	    if(g.calcValueOfHand(playersHand) > 21){
 	    	cout<<"Sorry you lost!"<<endl;
 	    	int currMoney = userMoneyAmount - betAmount;
-	    	cout<<"Your balance is now: "<<currMoney<<endl;
-	    	updateAccount(acctNum, currMoney);
-	    	cout<<"Do you want to play again"<<endl;
+            updateAccount(acctNum, currMoney);
+	    	cout << "Your balance is now: " << currMoney << endl;
+	    	cout << "Do you want to play again?" << endl;
 	    	string userInput;
-	    	cin>>userInput;
+	    	cin >> userInput;
 	    	if(userInput == "yes" || userInput == "Yes"){
-	    		gameEnd = false; 
-				
-			}
-			
-			else{
+	    		gameEnd = false;
+            } else{
 				gameEnd = true;
 				break; 
 			}	
 		
-		}
-		else if(g.calcValueOfHand(hand) == 21){
+		} else if(g.calcValueOfHand(playersHand) == 21){
 			cout<<"You win!"<<endl; 
 			int currMoney = userMoneyAmount + betAmount;
-	    	cout<<"Your balance is now: "<<currMoney<<endl;
-			cout<<"Do you want to play again"<<endl;
+            updateAccount(acctNum, currMoney);
+	    	cout << "Your balance is now: " << currMoney << endl;
+			cout <<"Do you want to play again?" << endl;
 	    	string userInput;
-	    	cin>>userInput;
+	    	cin >> userInput;
 	    	if(userInput == "yes" || userInput == "Yes"){
-	    		gameEnd = false; 
-				
-			}
-			
-			else{
+	    		gameEnd = false;
+			} else {
 				gameEnd = true;
 				break; 
 			}	
-		}
-		else{
-			g.askHitStandOrSplit(*deck, hand, dealerHand);
+		} else{
+			g.askHitStandOrSplit(*deck, playersHand, dealersHand);
 				
 	    // f. If the user decides to stand, decide how the program will select a card for the dealer.
 	    
@@ -186,31 +173,9 @@ int main(int argc, const char * argv[]) {
 	    // j. If the user wins, the money inputted will be doubled. -If the user ties, the money inputted will be split in half. -If the user loses, the user win 0 dollars.
 	    // k. The program will ask whether the user wants to play again. If so, these steps are repeated. If not, the program displays the total amount of betting money and the total amount won.
 	    // l. Be sure to update the player’s account accordingly.
-	
-	    
-	    
-	    
-	    // testers
-	    cout << endl <<  "TESTING: " << endl;
-	    //g.addNewAccount();
-	    // cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
-	    //g.printAccounts();
-	    
-	//    cout << g.getMoneyAmount(1000)<< endl;
-	//    g.updateAccount(1000, 100);
-	//    cout << g.getMoneyAmount(1000)<< endl;
-	//    g.updateAccount(1000, -100);
-	//    cout << g.getMoneyAmount(1000)<< endl;
-		}
-	    
-	    
-	    
 
+		}
 	}
-  
-    
-    
-    //menu
     return 0;
 }
 
