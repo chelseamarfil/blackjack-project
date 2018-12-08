@@ -9,16 +9,54 @@
 #include <iostream>
 #include "DeckOfCards.h"
 #include "Game.h"
-#include <map>
 using namespace std;
 
+static vector<Account> accountsVector;
+
+void updateAccount(int accountNumber, double amountToAdd) {
+    for(int i = 0; i < accountsVector.size(); i++) {
+        if (accountsVector[i].getAccountNumber() == accountNumber) {
+            accountsVector[i].setMoney(amountToAdd);
+        }
+    }
+//    map<int, double>::iterator p = mAccountMap.find(accountNumber);
+//    if (p == mAccountMap.end()) {
+//        cout << "Account doesn't exist." << endl;
+//    } else {
+//        mAccountMap[accountNumber] = getMoneyAmount(accountNumber) + amountToAdd;
+//    }
+}
+
+bool accountExists(int accountNumber) {
+    for(int i = 0; i < accountsVector.size(); i++) {
+        if (accountsVector[i].getAccountNumber() == accountNumber) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+double getMoneyAmount(int accountNumber) {
+    for(int i = 0; i < accountsVector.size(); i++) {
+        if (accountsVector[i].getAccountNumber() == accountNumber) {
+            return accountsVector[i].getMoney();
+        }
+    }
+
+    return -1;
+}
+
+void printAccounts() {
+    for(int i = 0; i < accountsVector.size(); i++) {
+        cout << accountsVector[i].getAccountNumber() << ": " << accountsVector[i].getMoney() << endl;
+    }
+}
+
 int main(int argc, const char * argv[]) {
-    //TESTING!!!!
-    cout<<"Enter your account number: "<<endl;
-    int accNum; 
-    cin>>accNum;
+    Account a(1001, 100);
+    accountsVector.push_back(a);
+    printAccounts();
     
-    g.addNewAccount(accNum)
     bool gameEnd = false;
     while(gameEnd == false){
 	    DeckOfCards *deck = new DeckOfCards();
@@ -29,25 +67,27 @@ int main(int argc, const char * argv[]) {
 		//    deck.printDeck();
 	    Game g(*deck);
 	    //player's accounts 
-	    cout<<"Player's Account: "<<endl;
-	    g.addNewAccount(100);
-	    g.addNewAccount(100);
-	    g.addNewAccount(100);
-	    g.addNewAccount(100);
-	    g.printAccounts();
+//        cout<<"Player's Account: "<<endl;
+//        g.addNewAccount(100);
+//        g.addNewAccount(100);
+//        g.addNewAccount(100);
+//        g.addNewAccount(100);
+//        g.printAccounts();
 		
 	    // a. Ask the user to enter the account number, make sure it exists.
 	    bool validAccountNumber = 0;
 	    int acctNum;
 	    do {
 	        acctNum = g.promptUserForAccountNumber();
-	        if (!g.accountExists(acctNum)) {
+            cout << acctNum;
+	        if (!accountExists(acctNum)) {
 	            cout << "Account doesn't exist." << endl;
 	        } else {
 	            cout << "Account exists!" << endl;
 	            validAccountNumber = 1;
 	        }
 	    } while(!validAccountNumber);
+        
 	    g.setPlayer(Player(acctNum));
 	    
 	    //set dealer
@@ -56,7 +96,7 @@ int main(int argc, const char * argv[]) {
 	    // b. Ask the user to enter the amount of money he/she wants to bet.
 	    bool validBetAmount = 0;
 	    double betAmount;
-	    double userMoneyAmount = g.getMoneyAmount(acctNum);
+	    double userMoneyAmount = getMoneyAmount(acctNum);
 	    cout << "You have $" << userMoneyAmount << " available to bet." << endl;
 	    do {
 	        betAmount = g.promptUserForAmountToBet();
@@ -100,7 +140,7 @@ int main(int argc, const char * argv[]) {
 	    	cout<<"Sorry you lost!"<<endl;
 	    	int currMoney = userMoneyAmount - betAmount;
 	    	cout<<"Your balance is now: "<<currMoney<<endl;
-	    	g.updateAccount(acctNum, currMoney);
+	    	updateAccount(acctNum, currMoney);
 	    	cout<<"Do you want to play again"<<endl;
 	    	string userInput;
 	    	cin>>userInput;
@@ -152,9 +192,9 @@ int main(int argc, const char * argv[]) {
 	    
 	    // testers
 	    cout << endl <<  "TESTING: " << endl;
-	    g.addNewAccount();
+	    //g.addNewAccount();
 	    // cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
-	    g.printAccounts();
+	    //g.printAccounts();
 	    
 	//    cout << g.getMoneyAmount(1000)<< endl;
 	//    g.updateAccount(1000, 100);

@@ -20,7 +20,7 @@
 // static map<int, double> mAccountMap;
 // = {{1000, 100.00}, {1001, 100.00}, {1002, 100.00}, {1003, 100.00}}
 
-static vector<Account> accountsVector;
+// static vector<Account> accountsVector;
 
 class Game {
 public:
@@ -48,12 +48,12 @@ public:
     
     int calcValueOfHand(vector<Card> &hand); 
     
-    void addNewAccount(); //done
-    void addNewAccount(double money); //done
-    
-    double getMoneyAmount(int accountNumber);
-    bool accountExists(int accountNumber);
-    void updateAccount(int accountNumber, double amountToAdd);
+//    void addNewAccount(); //done
+//    void addNewAccount(double money); //done
+//    
+//    double getMoneyAmount(int accountNumber);
+//    bool accountExists(int accountNumber);
+//    void updateAccount(int accountNumber, double amountToAdd);
     
     // void printMap(); // might not be necessary
     void printAccounts();

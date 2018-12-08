@@ -121,42 +121,42 @@ int Game::calcValueOfHand(vector<Card> &hand){
 	return playerScore;
 	
 }
-/*
- Updates the money in an account.
- @param accountNumber of the player
- @param amountToAdd to the player's money - param will be negative if user loses money.
- */
-void Game::updateAccount(int accountNumber, double amountToAdd) {
-    for(int i = 0; i < accountsVector.size(); i++) {
-        if (accountsVector[i].getAccountNumber() == accountNumber) {
-            accountsVector[i].setMoney(amountToAdd);
-        }
-    }
-//    map<int, double>::iterator p = mAccountMap.find(accountNumber);
-//    if (p == mAccountMap.end()) {
-//        cout << "Account doesn't exist." << endl;
-//    } else {
-//        mAccountMap[accountNumber] = getMoneyAmount(accountNumber) + amountToAdd;
+///*
+// Updates the money in an account.
+// @param accountNumber of the player
+// @param amountToAdd to the player's money - param will be negative if user loses money.
+// */
+//void Game::updateAccount(int accountNumber, double amountToAdd) {
+//    for(int i = 0; i < accountsVector.size(); i++) {
+//        if (accountsVector[i].getAccountNumber() == accountNumber) {
+//            accountsVector[i].setMoney(amountToAdd);
+//        }
 //    }
-}
-/**
- Adds a new account to the map. New account numbers will be incremented by 1, and will start off with $0.
- */
-void Game::addNewAccount() {
-    accountNumberCounter++;
-    Account a(accountNumberCounter, 0);
-    accountsVector.push_back(a);
-    //mAccountMap[accountNumberCounter] = 0;
-}
-/**
- Adds a new account to the map. New account numbers will be incremented by 1, and will start off with a given amount of money.
- */
-void Game::addNewAccount(double money) {
-    accountNumberCounter++;
-    Account a(accountNumberCounter, money);
-    accountsVector.push_back(a);
-    //mAccountMap[accountNumberCounter] = money;
-}
+////    map<int, double>::iterator p = mAccountMap.find(accountNumber);
+////    if (p == mAccountMap.end()) {
+////        cout << "Account doesn't exist." << endl;
+////    } else {
+////        mAccountMap[accountNumber] = getMoneyAmount(accountNumber) + amountToAdd;
+////    }
+//}
+///**
+// Adds a new account to the map. New account numbers will be incremented by 1, and will start off with $0.
+// */
+//void Game::addNewAccount() {
+//    accountNumberCounter++;
+//    Account a(accountNumberCounter, 0);
+//    accountsVector.push_back(a);
+//    //mAccountMap[accountNumberCounter] = 0;
+//}
+///**
+// Adds a new account to the map. New account numbers will be incremented by 1, and will start off with a given amount of money.
+// */
+//void Game::addNewAccount(double money) {
+//    accountNumberCounter++;
+//    Account a(accountNumberCounter, money);
+//    accountsVector.push_back(a);
+//    //mAccountMap[accountNumberCounter] = money;
+//}
 /**
 If the user decides to stand, decide how the program will
 select a card for the dealer
@@ -222,44 +222,44 @@ void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<C
  @param accountNumber the account number being searched
  @return the amount of money in the account
  */
-double Game::getMoneyAmount(int accountNumber) {
-    for(int i = 0; i < accountsVector.size(); i++) {
-        if (accountsVector[i].getAccountNumber() == accountNumber) {
-            return accountsVector[i].getMoney();
-        }
-    }
-    
-    return -1;
-//    map<int, double>::iterator p = mAccountMap.find(accountNumber);
-//    if (p == mAccountMap.end()) {
-//        return 0;
-//    } else {
-//        return p->second;
+//double Game::getMoneyAmount(int accountNumber) {
+//    for(int i = 0; i < accountsVector.size(); i++) {
+//        if (accountsVector[i].getAccountNumber() == accountNumber) {
+//            return accountsVector[i].getMoney();
+//        }
 //    }
-    
-//    if (accountExists(accountNumber)) {
-//        map<int, double>::iterator p = mAccountMap.find(accountNumber);
-//        return p->second;
-//    } else {
-//        return -1;
-//    }
-}
+//
+//    return -1;
+////    map<int, double>::iterator p = mAccountMap.find(accountNumber);
+////    if (p == mAccountMap.end()) {
+////        return 0;
+////    } else {
+////        return p->second;
+////    }
+//
+////    if (accountExists(accountNumber)) {
+////        map<int, double>::iterator p = mAccountMap.find(accountNumber);
+////        return p->second;
+////    } else {
+////        return -1;
+////    }
+//}
 /**
  */
-bool Game::accountExists(int accountNumber) {
-    for(int i = 0; i < accountsVector.size(); i++) {
-        if (accountsVector[i].getAccountNumber() == accountNumber) {
-            return 1;
-        }
-    }
-    return 0;
-//    map<int, double>::iterator p = mAccountMap.find(accountNumber);
-//    if (p == mAccountMap.end()) {
-//        return 0;
-//    } else {
-//        return 1;
+//bool Game::accountExists(int accountNumber) {
+//    for(int i = 0; i < accountsVector.size(); i++) {
+//        if (accountsVector[i].getAccountNumber() == accountNumber) {
+//            return 1;
+//        }
 //    }
-}
+//    return 0;
+////    map<int, double>::iterator p = mAccountMap.find(accountNumber);
+////    if (p == mAccountMap.end()) {
+////        return 0;
+////    } else {
+////        return 1;
+////    }
+//}
 //void Game::printMap() {
 //    for (map<int, double>::iterator pos = mAccountMap.begin();
 //         pos != mAccountMap.end(); pos++)
@@ -267,8 +267,8 @@ bool Game::accountExists(int accountNumber) {
 //        cout << pos->first << ": " << pos->second << "\n";
 //    }
 //}
-void Game::printAccounts() {
-    for(int i = 0; i < accountsVector.size(); i++) {
-        cout << accountsVector[i].getAccountNumber() << ": " << accountsVector[i].getMoney() << endl;
-    }
-}
+//void Game::printAccounts() {
+//    for(int i = 0; i < accountsVector.size(); i++) {
+//        cout << accountsVector[i].getAccountNumber() << ": " << accountsVector[i].getMoney() << endl;
+//    }
+//}
