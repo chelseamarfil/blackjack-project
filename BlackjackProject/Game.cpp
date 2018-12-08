@@ -90,7 +90,11 @@ void Game::showHand(vector<Card> &hand){
 	}
 	cout<<endl;
 }
-
+/**
+Calculates the value of the cards in the player's hand.
+@return: int - score
+@parameter: vector<Card> &hand, the hand of the player.
+**/
 int Game::calcValueOfHand(vector<Card> &hand){
 	playerScore = 0;
 	for(int i=0; i < hand.size(); i++){
@@ -157,6 +161,7 @@ int Game::calcValueOfHand(vector<Card> &hand){
 //    accountsVector.push_back(a);
 //    //mAccountMap[accountNumberCounter] = money;
 //}
+
 /**
 If the user decides to stand, decide how the program will
 select a card for the dealer
@@ -164,39 +169,75 @@ select a card for the dealer
 void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand )
 {
     int decision;
+    cout << "Enter a number to decide how the dealer will get their card: " << endl;
     cin>>decision;
     if (decision < 5 )
     {
+    	cout << "The dealer has gotten hit! " << endl;
         hit(mDeck, hand, dealerHand );
     }
     else if (decision > 5)
     {
-        split();
+    	cout << "The dealer has gotten split!" << endl;
+        split(mDeck, hand, dealerHand, mPlayer);
     }
 }
-int Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand){
-	if(playerScore < 21){
+
+/**
+g. If the user decides to hit and the total value is less than 21, 
+the program will select a card for the user. If the total value of the user’s 
+cards is more than 21 during this process, the user will lose; otherwise, decide 
+how the program will select a card for the dealer.
+**/
+int Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
+{
+	if(playerScore < 21)
+	{
 		cout<<"Your new card is: "<< selectAndShowOne(mDeck, hand).print()<<endl;
 		//return 1 if the game still continues
 		return(1);
 	}
-	else if(playerScore > 21 ){
+	else if(playerScore > 21 )
+	{
 		//return 0 if the game ended 
 		return(0);
 	}
-	else{
-		cout<<selectAndShowOne(mDeck, dealerHand).print()<<endl;
+	else
+	{ //The player is tied with the dealer, the dealer gets drawn one more card.
+		//Instructions: Otherwise, decide how the program will select a card for the dealer.
+		stand(mDeck, hand, dealerHand);
+		//cout<<selectAndShowOne(mDeck, dealerHand).print()<<endl;
 		return(2);
 	}
 	
 }
-void Game :: split(){
+
+/**
+h. If the user decides to split, the dealer will draw two cards for the user. 
+The user now has two hands. Also, an additional bet of equal value to the original bet is 
+placed on the second hand. Proceed the game as in step f and/or g.
+**/
+void Game :: split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
+{
+	vector<Card> hand2 = selectAndShowTwo(mDeck,hand);
+	hand.erase(hand.begin(), hand.begin() +1);
+	p1.setHand(hand2);
+	//cout << "The dealer has drawn two cards for you: " << selectAndShowTwo(mDeck, hand) << endl;
+	cout << "The dealer has drawn two cards for you." << endl;
+	cout << "This will now be your second hand. " << endl;
+	cout << "Your cards are: " << endl;
+		
+	for(int i = 0; i < hand2.size(); i++)
+	{
+		cout << hand2[i].print() << endl;
+	}
 	
+
 }
 /**
 Asks the user if they want to Hit, Stand, or Split.
 **/
-void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
+void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
 {
 	cout<<"Do you want to hit, stand, or split?"<<endl;
 	string decision;
@@ -214,7 +255,7 @@ void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<C
 	
 	else if (decision == "split" || decision == "Split")
 	{
-		split();
+		split(mDeck, hand, dealerHand, p1);
 	}
 }
 /**
