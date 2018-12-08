@@ -14,90 +14,160 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     //TESTING!!!!
+    cout<<"Enter your account number: "<<endl;
+    int accNum; 
+    cin>>accNum;
     
-    DeckOfCards deck;
-//    deck.printDeck();
-//    cout << endl << endl << endl;
-//    deck.shuffle();
-//    deck.printDeck();
-    Game g(deck);
-    g.addNewAccount(100);
-    g.addNewAccount(100);
-    g.addNewAccount(100);
-    g.printAccounts();
+    g.addNewAccount(accNum)
+    bool gameEnd = false;
+    while(gameEnd == false){
+	    DeckOfCards *deck = new DeckOfCards();
+	
+		//    deck.printDeck();
+		//    cout << endl << endl << endl;
+		//    deck.shuffle();
+		//    deck.printDeck();
+	    Game g(*deck);
+	    //player's accounts 
+	    cout<<"Player's Account: "<<endl;
+	    g.addNewAccount(100);
+	    g.addNewAccount(100);
+	    g.addNewAccount(100);
+	    g.addNewAccount(100);
+	    g.printAccounts();
+		
+	    // a. Ask the user to enter the account number, make sure it exists.
+	    bool validAccountNumber = 0;
+	    int acctNum;
+	    do {
+	        acctNum = g.promptUserForAccountNumber();
+	        if (!g.accountExists(acctNum)) {
+	            cout << "Account doesn't exist." << endl;
+	        } else {
+	            cout << "Account exists!" << endl;
+	            validAccountNumber = 1;
+	        }
+	    } while(!validAccountNumber);
+	    g.setPlayer(Player(acctNum));
+	    
+	    //set dealer
+	    g.setDealer(Player(7777)); 
+	    
+	    // b. Ask the user to enter the amount of money he/she wants to bet.
+	    bool validBetAmount = 0;
+	    double betAmount;
+	    double userMoneyAmount = g.getMoneyAmount(acctNum);
+	    cout << "You have $" << userMoneyAmount << " available to bet." << endl;
+	    do {
+	        betAmount = g.promptUserForAmountToBet();
+	        if (betAmount <= userMoneyAmount) {
+	            cout << "You are betting $" << betAmount << "." << endl;
+	            validBetAmount = 1;
+	        } else {
+	            cout << "Can't bet more money than you have." << endl;
+	        }
+	    } while(!validBetAmount);
+	    
+	    deck->shuffle();
+	    deck->printDeck();
+	    // c. The program will randomly select and show the user two cards.
+		vector<Card> hand = g.getPlayer().getHand();    
+		vector<Card> twoCards = g.selectAndShowTwo(*deck,hand); 
+		cout<<"The cards you pulled are: "<<endl;
+		for(int i = 0; i < twoCards.size(); i++){
+			cout<<twoCards[i].print()<<endl;
+		}
+	
+		
+	    // d. The program will randomly select another two cards and show one card (dealer's cards).
+		vector<Card> dealerHand = g.getDealer().getHand();
+		vector<Card> twoDealerCards = g.selectAndShowTwo(*deck,dealerHand); 
+		cout<<"The cards the dealer pulled is: "<<endl;
+		for(int i = 0; i < 1; i++){
+			cout<<twoDealerCards[i].print()<<endl;
+		}
+		cout<<endl;
+	    // e. The program will show the value of user's cards and ask if the user wants to hit or stand or split.
+	    
+	    cout<<"Your current cards in your hand are: "<<endl;
+	    g.showHand(hand);
+	    //get score 
+	    cout<<"Your current hand value is: "<< g.calcValueOfHand(hand)<<endl;
 
-    // a. Ask the user to enter the account number, make sure it exists.
-    bool validAccountNumber = 0;
-    int acctNum;
-    do {
-        acctNum = g.promptUserForAccountNumber();
-        if (!g.accountExists(acctNum)) {
-            cout << "Account doesn't exist." << endl;
-        } else {
-            cout << "Account exists!" << endl;
-            validAccountNumber = 1;
-        }
-    } while(!validAccountNumber);
-    g.setPlayer(Player(acctNum));
-    
-    // b. Ask the user to enter the amount of money he/she wants to bet.
-    bool validBetAmount = 0;
-    double betAmount;
-    double userMoneyAmount = g.getMoneyAmount(acctNum);
-    cout << "You have $" << userMoneyAmount << " available to bet." << endl;
-    do {
-        betAmount = g.promptUserForAmountToBet();
-        if (betAmount <= userMoneyAmount) {
-            cout << "You are betting $" << betAmount << "." << endl;
-            validBetAmount = 1;
-        } else {
-            cout << "Can't bet more money than you have." << endl;
-        }
-    } while(!validBetAmount);
-    
-    deck.shuffle();
-    deck.printDeck();
-    
-    // c. The program will randomly select and show the user two cards.
-	vector<Card> hand = g.getPlayer().getHand();    
-	vector<Card> twoCards = g.selectAndShowTwo(deck,hand); 
-	cout<<"The cards you pulled are: "<<endl;
-	for(int i = 0; i < twoCards.size(); i++){
-		cout<<twoCards[i].print()<<endl;
+		g.askHitStandOrSplit(*deck, hand, dealerHand);
+		cout<<"hand value: "<<g.calcValueOfHand(hand)<<endl;
+	    if(g.calcValueOfHand(hand) > 21){
+	    	cout<<"Sorry you lost!"<<endl;
+	    	int currMoney = userMoneyAmount - betAmount;
+	    	cout<<"Your balance is now: "<<currMoney<<endl;
+	    	g.updateAccount(acctNum, currMoney);
+	    	cout<<"Do you want to play again"<<endl;
+	    	string userInput;
+	    	cin>>userInput;
+	    	if(userInput == "yes" || userInput == "Yes"){
+	    		gameEnd = false; 
+				
+			}
+			
+			else{
+				gameEnd = true;
+				break; 
+			}	
+		
+		}
+		else if(g.calcValueOfHand(hand) == 21){
+			cout<<"You win!"<<endl; 
+			int currMoney = userMoneyAmount + betAmount;
+	    	cout<<"Your balance is now: "<<currMoney<<endl;
+			cout<<"Do you want to play again"<<endl;
+	    	string userInput;
+	    	cin>>userInput;
+	    	if(userInput == "yes" || userInput == "Yes"){
+	    		gameEnd = false; 
+				
+			}
+			
+			else{
+				gameEnd = true;
+				break; 
+			}	
+		}
+		else{
+			g.askHitStandOrSplit(*deck, hand, dealerHand);
+				
+	    // f. If the user decides to stand, decide how the program will select a card for the dealer.
+	    
+	    // g. If the user decides to hit and the total value is less than 21, the program will select a card for the user. If the total value of the user’s cards is more than 21 during this process, the user will lose; otherwise, decide how the program will select a card for the dealer.
+	    // h. If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
+	    // i. The winner is determined by the total value of the cards.
+	    // -If the value of the user’s cards is more than the dealer’s cards but less than 21, the user wins.
+	    // -If the value of the user’s cards and the dealer’s cards are the same, the game is a tie.
+	    // -Otherwise, the dealer wins.
+	    // j. If the user wins, the money inputted will be doubled. -If the user ties, the money inputted will be split in half. -If the user loses, the user win 0 dollars.
+	    // k. The program will ask whether the user wants to play again. If so, these steps are repeated. If not, the program displays the total amount of betting money and the total amount won.
+	    // l. Be sure to update the player’s account accordingly.
+	
+	    
+	    
+	    
+	    // testers
+	    cout << endl <<  "TESTING: " << endl;
+	    g.addNewAccount();
+	    // cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
+	    g.printAccounts();
+	    
+	//    cout << g.getMoneyAmount(1000)<< endl;
+	//    g.updateAccount(1000, 100);
+	//    cout << g.getMoneyAmount(1000)<< endl;
+	//    g.updateAccount(1000, -100);
+	//    cout << g.getMoneyAmount(1000)<< endl;
+		}
+	    
+	    
+	    
+
 	}
-	Card newCard = g.selectAndShowOne(deck, hand); 
-	
-	string s = newCard.print(); 
-	
-    // d. The program will randomly select another two cards and show one card (dealer's cards).
-
-    // e. The program will show the value of user’s cards and ask if the user wants to hit or stand or split.
-    // f. If the user decides to stand, decide how the program will select a card for the dealer.
-    // g. If the user decides to hit and the total value is less than 21, the program will select a card for the user. If the total value of the user’s cards is more than 21 during this process, the user will lose; otherwise, decide how the program will select a card for the dealer.
-    // h. If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
-    // i. The winner is determined by the total value of the cards.
-    // -If the value of the user’s cards is more than the dealer’s cards but less than 21, the user wins.
-    // -If the value of the user’s cards and the dealer’s cards are the same, the game is a tie.
-    // -Otherwise, the dealer wins.
-    // j. If the user wins, the money inputted will be doubled. -If the user ties, the money inputted will be split in half. -If the user loses, the user win 0 dollars.
-    // k. The program will ask whether the user wants to play again. If so, these steps are repeated. If not, the program displays the total amount of betting money and the total amount won.
-    // l. Be sure to update the player’s account accordingly.
-
-    
-    
-    
-    // testers
-    cout << endl <<  "TESTING: " << endl;
-    g.addNewAccount();
-    // cout << "TEST" << g.accountExists(accountNumberCounter) << endl;
-    g.printAccounts();
-    
-    
-//    cout << g.getMoneyAmount(1000)<< endl;
-//    g.updateAccount(1000, 100);
-//    cout << g.getMoneyAmount(1000)<< endl;
-//    g.updateAccount(1000, -100);
-//    cout << g.getMoneyAmount(1000)<< endl;
+  
     
     
     //menu

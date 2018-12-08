@@ -8,6 +8,7 @@
 
 #ifndef DeckOfCards_h
 #define DeckOfCards_h
+#include <vector>
 
 #include "Card.h"
 
