@@ -29,9 +29,9 @@ public:
     Game(DeckOfCards &deck);
     Game(DeckOfCards &deck, Player player); //done
     void setPlayer(Player player); // done
-    void setDealer(Player dealer);
-    Player getPlayer() const;
-    Player getDealer() const; 
+    void setDealer(Player dealer); //done
+    Player getPlayer() const; //done
+    Player getDealer() const; //done
     
     int promptUserForAccountNumber(); //done
     double promptUserForAmountToBet(); //done
@@ -40,11 +40,11 @@ public:
     Card selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand); //done
     void showHand(vector<Card> &hand); //done
     
-    void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand); // done
+    void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1); // done
     
     int hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
-    void stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand );
-    void split();
+    void stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
+    void split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
     
     int calcValueOfHand(vector<Card> &hand); 
     

@@ -20,6 +20,7 @@ public:
     Player();
     Player(Account account);
     vector<Card> getHand();
+    void setHand(vector <Card> newHand);
     vector<Card> getDealersHand();
     Account getAccount();
 private:
