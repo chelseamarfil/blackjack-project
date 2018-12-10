@@ -8,15 +8,18 @@
 
 #include "Card.h"
 
+//default constructor
 Card::Card() {
     
 }
-
+//Card constructor that takes in a face (string), and the suit (string) aka 10, hearts
 Card::Card(string mFace, string mSuit) {
     face = mFace;
     suit = mSuit;
 }
-
+/**
+* @return int - the integer value of the card 
+*/
 int Card::getFaceValue() {
     if (face == "Ace") {
         return 1;
