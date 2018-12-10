@@ -240,17 +240,41 @@ void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<C
 	if (decision == "hit" || decision == "Hit")
 	{
 		hit(mDeck, hand, dealerHand);
+        //return "hit";
 	}
 	
 	else if(decision == "stand" || decision == "Stand")
 	{
 		stand(mDeck, hand, dealerHand);
+        //return "stand";
 	}
 	
 	else if (decision == "split" || decision == "Split")
 	{
 		split(mDeck, hand, dealerHand, p1);
 	}
+}
+
+string Game::askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand) {
+    cout<<"Do you want to hit, stand, or split?"<<endl;
+    string decision;
+    cin >> decision;
+    
+    if (decision == "hit" || decision == "Hit")
+    {
+        return "hit";
+    }
+    
+    else if(decision == "stand" || decision == "Stand")
+    {
+        return "stand";
+    }
+    
+    else if (decision == "split" || decision == "Split")
+    {
+        return "split";
+    }
+    return "Error.";
 }
 /**
  Gets the amount of money associated with an account number.
