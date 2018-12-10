@@ -188,7 +188,7 @@ void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealer
 
 /**
 g. If the user decides to hit and the total value is less than 21, 
-the program will select a card for the user. If the total value of the user’s 
+the program will select a card for the user. If the total value of the userâ€™s 
 cards is more than 21 during this process, the user will lose; otherwise, decide 
 how the program will select a card for the dealer.
 **/
