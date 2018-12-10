@@ -184,7 +184,7 @@ the program will select a card for the user. If the total value of the user’s
 cards is more than 21 during this process, the user will lose; otherwise, decide 
 how the program will select a card for the dealer.
 **/
-Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
+void Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
 {
 	cout<<"Your new card is: "<< selectAndShowOne(mDeck, hand).print()<<endl;
 
