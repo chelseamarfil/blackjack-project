@@ -26,15 +26,6 @@ DeckOfCards::DeckOfCards() {
     }
 }
 
-//void DeckOfCards::shuffle() {
-//    currentCard = 0;
-//    for (int first = 0; first < NUMBER_OF_CARDS; first++) {
-//        int second = (rand() +time(0)) % NUMBER_OF_CARDS;
-//        Card temp = deckOfCards[first];
-//        deckOfCards[first] = deckOfCards[second];
-//        deckOfCards[second] = temp;
-//    }
-//}
 
 /*
  Shuffles a deck of cards using srand
@@ -52,6 +43,9 @@ void DeckOfCards::shuffle() {
     }
 
 }
+/*
+* print out the deck 
+*/
 void DeckOfCards::printDeck() const{
     cout << left;
     for (int i = 0; i < NUMBER_OF_CARDS; i++) {
@@ -61,7 +55,9 @@ void DeckOfCards::printDeck() const{
     }
 }
          
-         
+/*
+*
+*/
 Card DeckOfCards:: dealCard() {
 	//if currentCard - index that moves along the deck of cards 
     if (currentCard > NUMBER_OF_CARDS) {
