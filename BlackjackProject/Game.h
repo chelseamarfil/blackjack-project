@@ -27,7 +27,7 @@ public:
     Game(); //done
 
     Game(DeckOfCards &deck);
-    Game(DeckOfCards &deck, Player player); //done
+    Game(DeckOfCards &deck, Player player, Player dealer); //done
     void setPlayer(Player player); // done
     void setDealer(Player dealer); //done
     Player getPlayer() const; //done

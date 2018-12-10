@@ -135,7 +135,7 @@ int main(int argc, const char * argv[]) {
 	    // h. If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
 
 	    
-	    //if the user has not hit 21 yet he can keep going 
+	    //if the user has not hit 21 yet he can keep going
 	    while (g.calcValueOfHand(playersHand) < 21 ){
 	    	g.askHitStandOrSplit(*deck, playersHand, dealersHand, p1);
 	    	cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;

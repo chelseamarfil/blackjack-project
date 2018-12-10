@@ -170,11 +170,19 @@ select a card for the dealer
 void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand )
 {
 	if(dealerScore >= 17 ){
-		
-	}
+
+    }
 	else if (dealerScore < 17){
-		selectAndShowOne(mDeck, dealerHand);
+        while (dealerScore < 17) {
+            dealerScore += selectAndShowOne(mDeck, dealerHand).getFaceValue();
+        }
 	}
+    
+    if (playerScore < dealerScore) {
+        cout << "Player wins";
+    } else {
+        cout << "Dealer wins";
+    }
 
 }
 
