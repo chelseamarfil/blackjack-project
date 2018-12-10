@@ -33,7 +33,7 @@ double Account::getMoney() const {
 }
 
 void Account::setMoney(double amount) {
-    mMoney = amount;
+    mMoney  = amount;
 }
 
 

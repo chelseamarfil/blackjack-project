@@ -138,7 +138,7 @@ int main(int argc, const char * argv[]) {
 	    //if the user has not hit 21 yet he can keep going
 	    while (g.calcValueOfHand(playersHand) < 21 ){
 	    	g.askHitStandOrSplit(*deck, playersHand, dealersHand, p1);
-	    	cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
+	    	cout << "The value of your hand is now: " << g.calcValueOfHan d(playersHand) << endl;
 	    	cout << "\n" << endl;
 	    	
 		}

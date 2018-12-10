@@ -21,7 +21,7 @@ public:
     Player(Account account);
     vector<Card> getHand();
     void setHand(vector <Card> newHand);
-    vector<Card> getDealersHand();
+    vector<Card> getDeale rsHand();
     Account getAccount();
 private:
     Account mAccount;

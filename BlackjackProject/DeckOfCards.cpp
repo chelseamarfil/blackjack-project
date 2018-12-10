@@ -57,7 +57,7 @@ void DeckOfCards::printDeck() const{
          
 /*
 *
-*/
+*/ 
 Card DeckOfCards:: dealCard() {
 	//if currentCard - index that moves along the deck of cards 
     if (currentCard > NUMBER_OF_CARDS) {

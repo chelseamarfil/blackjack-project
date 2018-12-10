@@ -27,7 +27,7 @@ public:
 private:
     //deckOfCArds is a pointer to a Card type
     Card* deckOfCards;
-    int currentCard;
+    int currentCard; 
     
 };
 

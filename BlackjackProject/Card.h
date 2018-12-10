@@ -16,7 +16,7 @@ class Card {
 public:
     Card();
     Card(string face, string suit);
-    string print() const;
+    string  print() const;
     int getFaceValue();
     string getFace() const;
     string getSuit() const;
