@@ -127,32 +127,18 @@ int main(int argc, const char * argv[]) {
 	    // e. The program will show the value of user's cards and ask if the user wants to hit or stand or split.
 	    //cout<<"The cards in your hand are: "<<endl;
 	    //g.showHand(playersHand);
-        
-	    cout<<"The value of your hand is: "<< g.calcValueOfHand(playersHand) <<endl;
+	    cout<<"The value of your hand is: "<< g.calcValueOfHand(playersHand)<<endl;
         
         
         // f. If the user decides to stand, decide how the program will select a card for the dealer.
-        while (g.calcValueOfHand(playersHand) < 21) {
-            string userAnswer = g.askHitStandOrSplit(*deck, playersHand, dealersHand);
-            
-	    // g. If the user decides to hit and the total value is less than 21, the program will select a card for the user. If the total value of the user’s cards is more than 21 during this process, the user will lose; otherwise, decide how the program will select a card for the dealer.
-            while (userAnswer == "hit") {
-                g.hit(*deck, playersHand, dealersHand);
-                if (g.calcValueOfHand(playersHand) > 21) {
-                    cout << "you lose.";
-                    break;
-                }
-            
-            }
-        
-        
-        // h. If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
+	    // g. If the user decides to hit and the total value is less than 21, the program will select a card for the user. If the total value of the userâ€™s cards is more than 21 during this process, the user will lose; otherwise, decide how the program will select a card for the dealer.
+	    // h. If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
 
 	    
 	    //if the user has not hit 21 yet he can keep going
 	    while (g.calcValueOfHand(playersHand) < 21 ){
 	    	g.askHitStandOrSplit(*deck, playersHand, dealersHand, p1);
-	    	cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
+	    	cout << "The value of your hand is now: " << g.calcValueOfHan d(playersHand) << endl;
 	    	cout << "\n" << endl;
 	    	
 		}
@@ -204,7 +190,7 @@ int main(int argc, const char * argv[]) {
 			}	
 		} 
 		
-		//-If the value of the user’s cards is more than the dealer’s cards but less than 21, the user wins.
+		//-If the value of the userâ€™s cards is more than the dealerâ€™s cards but less than 21, the user wins.
 		// j. If the user wins, the money inputted will be doubled.
 		else if (g.calcValueOfHand(playersHand) > g.calcValueOfHand(dealersHand) && g.calcValueOfHand(playersHand) <= 21)
 		{
@@ -233,7 +219,7 @@ int main(int argc, const char * argv[]) {
 
 	      
 	    
-	    // l. Be sure to update the player’s account accordingly.
+	    // l. Be sure to update the playerâ€™s account accordingly.
 
 		}
 	}
@@ -241,4 +227,3 @@ int main(int argc, const char * argv[]) {
 }
 
 
-}
