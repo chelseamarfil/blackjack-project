@@ -3,7 +3,7 @@
 //  BlackjackProject
 //
 //  Created by Chelsea Marfil on 10/29/18.
-//  Copyright � 2018 ChelseaMarfil. All rights reserved.
+//  Copyright ï¿½ 2018 ChelseaMarfil. All rights reserved.
 //
 
 #include "DeckOfCards.h"
@@ -57,7 +57,7 @@ void DeckOfCards::printDeck() const{
          
 /*
 *
-*/
+*/ 
 Card DeckOfCards:: dealCard() {
 	//if currentCard - index that moves along the deck of cards 
     if (currentCard > NUMBER_OF_CARDS) {
