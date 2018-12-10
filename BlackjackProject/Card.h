@@ -3,7 +3,7 @@
 //  BlackjackProject
 //
 //  Created by Chelsea Marfil on 11/5/18.
-//  Copyright © 2018 ChelseaMarfil. All rights reserved.
+//  Copyright Â© 2018 ChelseaMarfil. All rights reserved.
 //
 
 #ifndef Card_h
@@ -16,7 +16,7 @@ class Card {
 public:
     Card();
     Card(string face, string suit);
-    string print() const;
+    string  print() const;
     int getFaceValue();
     string getFace() const;
     string getSuit() const;
