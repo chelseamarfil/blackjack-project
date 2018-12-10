@@ -3,7 +3,7 @@
 //  BlackjackProject
 //
 //  Created by Chelsea Marfil on 12/5/18.
-//  Copyright © 2018 ChelseaMarfil. All rights reserved.
+//  Copyright Â© 2018 ChelseaMarfil. All rights reserved.
 //
 
 #ifndef Game_h
@@ -40,11 +40,9 @@ public:
     Card selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand); //done
     void showHand(vector<Card> &hand); //done
     
-    string askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
-    
     void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1); // done
     
-    void hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
+    void  hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
     void stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
     void split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
     
