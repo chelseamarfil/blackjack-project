@@ -8,9 +8,10 @@ Game::Game() {
     mDeck = DeckOfCards();
 }
 
-Game::Game(DeckOfCards& deck, Player player) {
+Game::Game(DeckOfCards& deck, Player player, Player dealer) {
     mDeck = deck;
     mPlayer = player;
+    dealerScore = 0;
     playerScore = 0;
 }
 
@@ -168,19 +169,13 @@ select a card for the dealer
 **/
 void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand )
 {
-    int decision;
-    cout << "Enter a number to decide how the dealer will get their card: " << endl;
-    cin>>decision;
-    if (decision < 5 )
-    {
-    	cout << "The dealer has gotten hit! " << endl;
-        hit(mDeck, hand, dealerHand );
-    }
-    else if (decision > 5)
-    {
-    	cout << "The dealer has gotten split!" << endl;
-        split(mDeck, hand, dealerHand, mPlayer);
-    }
+	if(dealerScore >= 17 ){
+		
+	}
+	else if (dealerScore < 17){
+		selectAndShowOne(mDeck, dealerHand);
+	}
+
 }
 
 /**
@@ -189,25 +184,16 @@ the program will select a card for the user. If the total value of the user’s
 cards is more than 21 during this process, the user will lose; otherwise, decide 
 how the program will select a card for the dealer.
 **/
-int Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
+Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
 {
-	if(playerScore < 21)
-	{
-		cout<<"Your new card is: "<< selectAndShowOne(mDeck, hand).print()<<endl;
-		//return 1 if the game still continues
-		return(1);
-	}
-	else if(playerScore > 21 )
-	{
-		//return 0 if the game ended 
-		return(0);
-	}
-	else
-	{ //The player is tied with the dealer, the dealer gets drawn one more card.
-		//Instructions: Otherwise, decide how the program will select a card for the dealer.
+	cout<<"Your new card is: "<< selectAndShowOne(mDeck, hand).print()<<endl;
+
+	//if the dealer's score 
+	if(dealerScore >= 17 ){
 		stand(mDeck, hand, dealerHand);
-		//cout<<selectAndShowOne(mDeck, dealerHand).print()<<endl;
-		return(2);
+	}
+	else if(dealerScore < 17){
+		selectAndShowOne(mDeck, dealerHand);
 	}
 	
 }
