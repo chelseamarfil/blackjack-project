@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 #include<vector>
-
+ 
 using namespace std;
 
 Game::Game() {
@@ -188,7 +188,7 @@ void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealer
 
 /**
 g. If the user decides to hit and the total value is less than 21, 
-the program will select a card for the user. If the total value of the user’s 
+the program will select a card for the user. If the total value of the userâ€™s 
 cards is more than 21 during this process, the user will lose; otherwise, decide 
 how the program will select a card for the dealer.
 **/
@@ -240,41 +240,17 @@ void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<C
 	if (decision == "hit" || decision == "Hit")
 	{
 		hit(mDeck, hand, dealerHand);
-        //return "hit";
 	}
 	
 	else if(decision == "stand" || decision == "Stand")
 	{
 		stand(mDeck, hand, dealerHand);
-        //return "stand";
 	}
 	
 	else if (decision == "split" || decision == "Split")
 	{
 		split(mDeck, hand, dealerHand, p1);
 	}
-}
-
-string Game::askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand) {
-    cout<<"Do you want to hit, stand, or split?"<<endl;
-    string decision;
-    cin >> decision;
-    
-    if (decision == "hit" || decision == "Hit")
-    {
-        return "hit";
-    }
-    
-    else if(decision == "stand" || decision == "Stand")
-    {
-        return "stand";
-    }
-    
-    else if (decision == "split" || decision == "Split")
-    {
-        return "split";
-    }
-    return "Error.";
 }
 /**
  Gets the amount of money associated with an account number.
