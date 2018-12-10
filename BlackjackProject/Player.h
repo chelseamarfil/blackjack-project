@@ -3,7 +3,7 @@
 //  BlackjackProject
 //
 //  Created by Chelsea Marfil on 11/5/18.
-//  Copyright © 2018 ChelseaMarfil. All rights reserved.
+//  Copyright Â© 2018 ChelseaMarfil. All rights reserved.
 //
 
 #ifndef Player_h
@@ -21,7 +21,7 @@ public:
     Player(Account account);
     vector<Card> getHand();
     void setHand(vector <Card> newHand);
-    vector<Card> getDealersHand();
+    vector<Card> getDeale rsHand();
     Account getAccount();
 private:
     Account mAccount;
