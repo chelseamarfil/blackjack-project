@@ -40,10 +40,6 @@ public:
     Card selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand); //done
     void showHand(vector<Card> &hand); //done
     
-    //void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1); // done
-    
-    //void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
-    
     string askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
     
     void hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
@@ -52,21 +48,13 @@ public:
     
     int calcValueOfHand(vector<Card> &hand); 
     
-//    void addNewAccount(); //done
-//    void addNewAccount(double money); //done
-//    
-//    double getMoneyAmount(int accountNumber);
-//    bool accountExists(int accountNumber);
-//    void updateAccount(int accountNumber, double amountToAdd);
-    
-    // void printMap(); // might not be necessary
     void printAccounts();
 private:
     Player mPlayer;
     Player mDealer;
+    DeckOfCards mDeck;
     int playerScore;
     int dealerScore;
-    DeckOfCards mDeck;
 };
 
 #endif /* Game_h */

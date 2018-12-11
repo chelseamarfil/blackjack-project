@@ -88,10 +88,16 @@ void askPlayAgain(bool &gameEnd, double betTracker, double moneyWon) {
     if(userInput == "yes" || userInput == "Yes"){
         gameEnd = false;
     } else if (userInput == "no" || userInput == "No") {
+        //TODO: not sure how exactly he wants us to calculate moneyWon...
         cout << "Total amount of betting money: " << betTracker << endl;
         cout << "Total amount of money won: " << moneyWon << endl;
         gameEnd = true;
     }
+}
+
+void hit(Game g, DeckOfCards &deck, vector<Card> &playersHand) {
+    cout<<"You have drawn a: "<< g.selectAndShowOne(deck, playersHand).print()<<endl;
+    cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
 }
 
 int main(int argc, const char * argv[]) {
@@ -124,9 +130,6 @@ int main(int argc, const char * argv[]) {
         // Set the player of the game.
 	    g.setPlayer(Player(acctNum));
 	    
-	    // Set the dealer of the game.
-	    //g.setDealer(Player(7777));
-	    
 	    // b. Ask the user to enter the amount of money he/she wants to bet, make sure it's a valid amount.
 	    bool validBetAmount = 0;
         double betAmount;
@@ -145,6 +148,7 @@ int main(int argc, const char * argv[]) {
 	    
         // Shuffle the card deck.
 	    deck->shuffle();
+        deck->printDeck();
         cout << endl << endl;
         
 	    // c. The program will select and show the user two cards from the shuffled deck.
@@ -172,7 +176,7 @@ int main(int argc, const char * argv[]) {
             // ask if the user wants to hit or stand or split.
             string user = g.askHitStandOrSplit(*deck, playersHand, dealersHand, p1);
             
-            // f. If the user decides to stand, decide how the program will select a card for the dealer.
+            // f. If the user decides to stand.
             if (user == "stand") {
                 cout << endl << "The dealers hand contains the cards: " << endl;
                 for (int i = 0; i < dealersHand.size(); i ++) {
@@ -188,64 +192,64 @@ int main(int argc, const char * argv[]) {
                 cout << "Dealers hand value after dealing: " << g.calcValueOfHand(dealersHand) << endl;
     
                 userStands = true;
-                
-            // g. If the user decides to hit and the total value is less than 21, the program will select a card for the user. If the total value of the user's cards is more than 21 during this process, the user will lose; otherwise, decide how the program will select a card for the dealer.
-            } else if (user == "hit") {
-                cout<<"You have drawn a: "<< g.selectAndShowOne(*deck, playersHand).print()<<endl;
-                cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
-            }
+            // If user decides to hit.
+           } else if (user == "hit") {
+               hit(g, *deck, playersHand);
+           }
+            
+            // h. TODO: If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
         }
         
-        // h. TODO: If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
 
-        
-            if(g.calcValueOfHand(playersHand) > 21) {
-                dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
-                
-                askPlayAgain(gameEnd, betTracker, moneyWon);
-                
-                if (gameEnd == true) {
-                    break;
-                }
-            } else if(g.calcValueOfHand(dealersHand) > 21) {
-                userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
-                
-                askPlayAgain(gameEnd, betTracker, moneyWon);
-                
-                if (gameEnd == true) {
-                    break;
-                }
-
-            } else if(g.calcValueOfHand(playersHand) == g.calcValueOfHand(dealersHand)){
-                userTies(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
-                
-                askPlayAgain(gameEnd, betTracker, moneyWon);
-                
-                if (gameEnd == true) {
-                    break;
-                }
+        // If value of players hand is > 21, dealer wins.
+        if(g.calcValueOfHand(playersHand) > 21) {
+            dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
+            
+            askPlayAgain(gameEnd, betTracker, moneyWon);
+            
+            if (gameEnd == true) {
+                break;
             }
-        
-            else if (g.calcValueOfHand(playersHand) > g.calcValueOfHand(dealersHand) && g.calcValueOfHand(playersHand) <= 21)
-            {
-                userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
-                
-                askPlayAgain(gameEnd, betTracker, moneyWon);
-                
-                if (gameEnd == true) {
-                    break;
-                }
-            } else {
-                dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
-                
-                askPlayAgain(gameEnd, betTracker, moneyWon);
-                
-                if (gameEnd == true) {
-                    break;
-                }
+        // If value of dealers hand is > 21, player wins.
+        } else if(g.calcValueOfHand(dealersHand) > 21) {
+            userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
+            
+            askPlayAgain(gameEnd, betTracker, moneyWon);
+            
+            if (gameEnd == true) {
+                break;
             }
-        
-	}
+        // If value of the dealers hand and players hand are equal, there is a tie.
+        } else if(g.calcValueOfHand(playersHand) == g.calcValueOfHand(dealersHand)){
+            userTies(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
+            
+            askPlayAgain(gameEnd, betTracker, moneyWon);
+            
+            if (gameEnd == true) {
+                break;
+            }
+        }
+        // If the players hand is greater than the dealers hand and is <= 21, player wins.
+        else if (g.calcValueOfHand(playersHand) > g.calcValueOfHand(dealersHand) && g.calcValueOfHand(playersHand) <= 21)
+        {
+            userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
+            
+            askPlayAgain(gameEnd, betTracker, moneyWon);
+            
+            if (gameEnd == true) {
+                break;
+            }
+        // Else dealer wins.
+        } else {
+            dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
+            
+            askPlayAgain(gameEnd, betTracker, moneyWon);
+            
+            if (gameEnd == true) {
+                break;
+            }
+        }
+    }
     return 0;
 }
 

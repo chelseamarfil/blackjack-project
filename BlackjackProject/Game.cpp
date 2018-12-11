@@ -11,13 +11,14 @@ Game::Game() {
 Game::Game(DeckOfCards& deck, Player player, Player dealer) {
     mDeck = deck;
     mPlayer = player;
-    dealerScore = 0;
     playerScore = 0;
+    dealerScore = 0;
 }
 
 Game::Game(DeckOfCards& deck) {
     mDeck = deck;
     playerScore = 0;
+    dealerScore = 0;
 }
 
 void Game :: setPlayer(Player player) {
