@@ -207,47 +207,31 @@ int main(int argc, const char * argv[]) {
             
             askPlayAgain(gameEnd, betTracker, moneyWon);
             
-            if (gameEnd == true) {
-                break;
-            }
         // If value of dealers hand is > 21, player wins.
         } else if(g.calcValueOfHand(dealersHand) > 21) {
             userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
             
             askPlayAgain(gameEnd, betTracker, moneyWon);
             
-            if (gameEnd == true) {
-                break;
-            }
         // If value of the dealers hand and players hand are equal, there is a tie.
         } else if(g.calcValueOfHand(playersHand) == g.calcValueOfHand(dealersHand)){
             userTies(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
             
             askPlayAgain(gameEnd, betTracker, moneyWon);
-            
-            if (gameEnd == true) {
-                break;
-            }
-        }
+        
         // If the players hand is greater than the dealers hand and is <= 21, player wins.
-        else if (g.calcValueOfHand(playersHand) > g.calcValueOfHand(dealersHand) && g.calcValueOfHand(playersHand) <= 21)
+        } else if (g.calcValueOfHand(playersHand) > g.calcValueOfHand(dealersHand) && g.calcValueOfHand(playersHand) <= 21)
         {
             userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
             
             askPlayAgain(gameEnd, betTracker, moneyWon);
             
-            if (gameEnd == true) {
-                break;
-            }
         // Else dealer wins.
         } else {
             dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
             
             askPlayAgain(gameEnd, betTracker, moneyWon);
             
-            if (gameEnd == true) {
-                break;
-            }
         }
     }
     return 0;
