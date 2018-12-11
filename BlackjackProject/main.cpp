@@ -46,20 +46,20 @@ void printAccounts() {
     }
 }
 
-void userWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, int moneyWon) {
+void userWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, double &moneyWon) {
     cout << endl << "You won! "<< endl;
     
     cout << "The dealer's score: " << g.calcValueOfHand(dealersHand) << endl;
     cout << "Your score: " << g.calcValueOfHand(playersHand) << endl;
     
     double currMoney = userMoneyAmount + (betAmount * 2);
-    //moneyWon += (betAmount * 2);
+    moneyWon += (betAmount * 2);
     
     updateAccount(acctNum, currMoney);
     cout << "Your balance is now: " << getMoneyAmount(acctNum) << endl << endl;
 }
 
-void userTies(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, int moneyWon) {
+void userTies(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, double &moneyWon) {
     cout<<"You've tied with the dealer. You will win half of what you've bet." <<endl;
     cout << "The dealer's score: " << g.calcValueOfHand(dealersHand) << endl;
     cout << "Your score: " << g.calcValueOfHand(playersHand) << endl;
@@ -81,17 +81,18 @@ void dealerWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, do
     cout << "Your balance is now: " << getMoneyAmount(acctNum) << endl << endl;
 }
 
-//void askPlayAgain(bool gameEnd) {
-//    cout << "Do you want to play again?" << endl;
-//    string userInput;
-//    cin >> userInput;
-//    if(userInput == "yes" || userInput == "Yes"){
-//        gameEnd = false;
-//    } else{
-//        gameEnd = true;
-//        break;
-//    }
-//}
+void askPlayAgain(bool &gameEnd, double betTracker, double moneyWon) {
+    cout << "Do you want to play again?" << endl;
+    string userInput;
+    cin >> userInput;
+    if(userInput == "yes" || userInput == "Yes"){
+        gameEnd = false;
+    } else if (userInput == "no" || userInput == "No") {
+        cout << "Total amount of betting money: " << betTracker << endl;
+        cout << "Total amount of money won: " << moneyWon << endl;
+        gameEnd = true;
+    }
+}
 
 int main(int argc, const char * argv[]) {
     Account a(1001, 100);
@@ -195,108 +196,51 @@ int main(int argc, const char * argv[]) {
             }
         }
         
-            // h. If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
+        // h. TODO: If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
 
         
-            // i. The winner is determined by the total value of the cards.
-        
-        // -If the user loses, the user win 0 dollars.
             if(g.calcValueOfHand(playersHand) > 21) {
                 dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
                 
-                // k. The program will ask whether the user wants to play again.
-                //If so, these steps are repeated.
-                //If not, the program displays the total amount of betting money and the total amount won.
-                cout << "Do you want to play again?" << endl;
-                string userInput;
-                cin >> userInput;
-                if(userInput == "yes" || userInput == "Yes"){
-                    gameEnd = false;
-                } else{
-                    cout << "Total amount of betting money: " << betTracker << endl;
-                    cout << "Total amount of money won: " << moneyWon << endl;
-                    gameEnd = true;
+                askPlayAgain(gameEnd, betTracker, moneyWon);
+                
+                if (gameEnd == true) {
                     break;
                 }
-           
-            // j-. If the user wins, the money inputted will be doubled.
             } else if(g.calcValueOfHand(dealersHand) > 21) {
                 userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
                 
-                // k. The program will ask whether the user wants to play again.
-                //If so, these steps are repeated.
-                //If not, the program displays the total amount of betting money and the total amount won.
-                cout << "Do you want to play again?" << endl;
-                string userInput;
-                cin >> userInput;
-                if(userInput == "yes" || userInput == "Yes"){
-                    gameEnd = false;
-                } else{
-                    cout << "Total amount of betting money: " << betTracker << endl;
-                    cout << "Total amount of money won: " << moneyWon << endl;
-                    gameEnd = true;
+                askPlayAgain(gameEnd, betTracker, moneyWon);
+                
+                if (gameEnd == true) {
                     break;
                 }
-                
-            // -If the value of the user's cards and the dealer's cards are the same, the game is a tie.
-            //-If the user ties, the money inputted will be split in half.
+
             } else if(g.calcValueOfHand(playersHand) == g.calcValueOfHand(dealersHand)){
                 userTies(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
                 
-                // k. The program will ask whether the user wants to play again.
-                //If so, these steps are repeated.
-                //If not, the program displays the total amount of betting money and the total amount won.
-                cout <<"Do you want to play again?" << endl;
-                string userInput;
-                cin >> userInput;
-                if(userInput == "yes" || userInput == "Yes"){
-                    gameEnd = false;
-                } else {
-                    cout << "Total amount of betting money: " << betTracker << endl;
-                    cout << "Total amount of money won: " << moneyWon << endl;
-                    gameEnd = true;
+                askPlayAgain(gameEnd, betTracker, moneyWon);
+                
+                if (gameEnd == true) {
                     break;
                 }
             }
-            
-            //-If the value of the userâ€™s cards is more than the dealerâ€™s cards but less than 21, the user wins.
-            // j. If the user wins, the money inputted will be doubled.
+        
             else if (g.calcValueOfHand(playersHand) > g.calcValueOfHand(dealersHand) && g.calcValueOfHand(playersHand) <= 21)
             {
                 userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
-//                cout<<"You've won!! Congratulations! " <<endl;
-//                cout << "The dealer's score: " << g.calcValueOfHand(dealersHand) << endl;
-//                cout << "Your score: " << g.calcValueOfHand(playersHand) << endl;
-//                double currMoney = userMoneyAmount + (betAmount * 2);
-//                updateAccount(acctNum, currMoney);
-//                //If the player ties with the dealer, then their betted money will be cut in half.
-//                cout << "Your bet gets doubled. " << endl << "Your balance is now: " << currMoney << endl << endl;
                 
-                // k. The program will ask whether the user wants to play again.
-                //If so, these steps are repeated.
-                //If not, the program displays the total amount of betting money and the total amount won.
-                cout <<"Do you want to play again?" << endl;
-                string userInput;
-                cin >> userInput;
-                if(userInput == "yes" || userInput == "Yes"){
-                    gameEnd = false;
-                } else {
-                    cout << "Total amount of betting money: " << betTracker << endl;
-                    cout << "Total amount of money won: " << moneyWon << endl;
-                    gameEnd = true;
+                askPlayAgain(gameEnd, betTracker, moneyWon);
+                
+                if (gameEnd == true) {
                     break;
                 }
             } else {
                 dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
-                cout <<"Do you want to play again?" << endl;
-                string userInput;
-                cin >> userInput;
-                if(userInput == "yes" || userInput == "Yes"){
-                    gameEnd = false;
-                } else {
-                    cout << "Total amount of betting money: " << betTracker << endl;
-                    cout << "Total amount of money won: " << moneyWon << endl;
-                    gameEnd = true;
+                
+                askPlayAgain(gameEnd, betTracker, moneyWon);
+                
+                if (gameEnd == true) {
                     break;
                 }
             }
