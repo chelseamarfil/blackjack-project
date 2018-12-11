@@ -9,7 +9,7 @@
 #ifndef Account_h
 #define Account_h
 
-st atic int accountNumberCounter = 1000;
+// static int accountNumberCounter = 1000;
 
 class Account {
 

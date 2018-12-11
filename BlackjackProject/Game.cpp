@@ -169,20 +169,26 @@ select a card for the dealer
 **/
 void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand )
 {
-	if(dealerScore >= 17 ){
-
+    cout << "The dealers hand contains the cards: " << endl;
+    for (int i = 0; i < dealerHand.size(); i ++) {
+        cout << dealerHand[i].print() << endl;
     }
-	else if (dealerScore < 17){
-        while (dealerScore < 17) {
-            dealerScore += selectAndShowOne(mDeck, dealerHand).getFaceValue();
+    dealerScore += calcValueOfHand(dealerHand);
+    cout << "Dealer's hand value: " << dealerScore << endl;;
+    if (dealerScore < 17) {
+        while (dealerScore < 17 && dealerScore < 21) {
+            Card newCard = selectAndShowOne(mDeck, dealerHand);
+            cout << "Dealer's new card: " << newCard.print() << endl;
+            dealerScore += newCard.getFaceValue();
         }
-	}
-    
-    if (playerScore < dealerScore) {
-        cout << "Player wins";
-    } else {
-        cout << "Dealer wins";
+        cout << "Dealers hand value: " << dealerScore;
     }
+    
+//    if (playerScore < dealerScore && dealerScore <= 21) {
+//        cout << "Dealer wins";
+//    } else {
+//        cout << "Player wins";
+//    }
 
 }
 
@@ -196,13 +202,13 @@ void Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHan
 {
 	cout<<"Your new card is: "<< selectAndShowOne(mDeck, hand).print()<<endl;
 
-	//if the dealer's score 
-	if(dealerScore >= 17 ){
-		stand(mDeck, hand, dealerHand);
-	}
-	else if(dealerScore < 17){
-		selectAndShowOne(mDeck, dealerHand);
-	}
+//    //if the dealer's score
+//    if(calcValueOfHand(dealerHand) >= 17 ){
+//        stand(mDeck, hand, dealerHand);
+//    }
+//    else if(calcValueOfHand(dealerHand) < 17){
+//        selectAndShowOne(mDeck, dealerHand);
+//    }
 	
 }
 
@@ -228,30 +234,67 @@ void Game :: split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerH
 	
 
 }
+string Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
+{
+    cout<<"Do you want to hit, stand, or split?"<<endl;
+    string decision;
+    cin >> decision;
+    
+    if (decision == "hit" || decision == "Hit")
+    {
+        //hit(mDeck, hand, dealerHand);
+        return "hit";
+    }
+    
+    else if(decision == "stand" || decision == "Stand")
+    {
+        //stand(mDeck, hand, dealerHand);
+        return "stand";
+    }
+    
+    else if (decision == "split" || decision == "Split")
+    {
+        //split(mDeck, hand, dealerHand, p1);
+        return "split";
+    }
+    else {
+        return "error";
+        
+    }
+}
+
 /**
 Asks the user if they want to Hit, Stand, or Split.
 **/
-void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
-{
-	cout<<"Do you want to hit, stand, or split?"<<endl;
-	string decision;
-	cin >> decision;
-	
-	if (decision == "hit" || decision == "Hit")
-	{
-		hit(mDeck, hand, dealerHand);
-	}
-	
-	else if(decision == "stand" || decision == "Stand")
-	{
-		stand(mDeck, hand, dealerHand);
-	}
-	
-	else if (decision == "split" || decision == "Split")
-	{
-		split(mDeck, hand, dealerHand, p1);
-	}
-}
+//void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
+//{
+//    cout<<"Do you want to hit, stand, or split?"<<endl;
+//    string decision;
+//    cin >> decision;
+//    
+//    if (decision == "hit" || decision == "Hit")
+//    {
+//        hit(mDeck, hand, dealerHand);
+//        //return "hit";
+//    }
+//    
+//    else if(decision == "stand" || decision == "Stand")
+//    {
+//        stand(mDeck, hand, dealerHand);
+//        //return "stand";
+//    }
+//    
+//    else if (decision == "split" || decision == "Split")
+//    {
+//        split(mDeck, hand, dealerHand, p1);
+//        //return "split";
+//    }
+//    else {
+//        //return "error";
+//        
+//    }
+//}
+
 /**
  Gets the amount of money associated with an account number.
  @param accountNumber the account number being searched

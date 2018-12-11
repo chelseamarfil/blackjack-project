@@ -40,9 +40,13 @@ public:
     Card selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand); //done
     void showHand(vector<Card> &hand); //done
     
-    void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1); // done
+    //void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1); // done
     
-    void  hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
+    //void askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
+    
+    string askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
+    
+    void hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
     void stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
     void split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
     

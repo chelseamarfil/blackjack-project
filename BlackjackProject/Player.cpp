@@ -29,10 +29,10 @@ vector <Card> Player::getHand(){
 //This will replace the previous hand that they originally had.
 void Player :: setHand(vector <Card> newHand)
 {
-	this -> playersH and = newHand;
+	this -> playersHand = newHand;
 }
 
-vector <Card> Player::getDealersHand(){
+vector <Card> Player::getDealersHand() const{
 	return dealersHand;
 }
 
