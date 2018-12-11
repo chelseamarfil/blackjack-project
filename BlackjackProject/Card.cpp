@@ -3,14 +3,14 @@
 //  BlackjackProject
 //
 //  Created by Chelsea Marfil on 11/5/18.
-//  Copyright Â© 2018 ChelseaMarfil. All rights reserved.
-// 
+//  Copyright © 2018 ChelseaMarfil. All rights reserved.
+//
 
 #include "Card.h"
 
 //default constructor
 Card::Card() {
-    
+
 }
 //Card constructor that takes in a face (string), and the suit (string) aka 10, hearts
 Card::Card(string mFace, string mSuit) {
@@ -18,7 +18,7 @@ Card::Card(string mFace, string mSuit) {
     suit = mSuit;
 }
 /**
-* @return int - the integer value of the card 
+* @return int - the integer value of the card
 */
 int Card::getFaceValue() {
     if (face == "Ace") {
@@ -53,20 +53,20 @@ int Card::getFaceValue() {
 }
 
 /*
-* print out the face of suit aka Nine of hearts 
-*@return string - a concatination of the face and suit 
+* print out the face of suit aka Nine of hearts
+*@return string - a concatination of the face and suit
 */
 string Card::print() const{
 	return(face + " of " + suit);
 }
 /*
-*@return string - the face aka Nine 
+*@return string - the face aka Nine
 */
 string Card::getFace() const {
-	return  face; 
+	return  face;
 }
 /*
-*@return string - the suit - SPADES, DIAMONDS, HEARTS, CLUBS 
+*@return string - the suit - SPADES, DIAMONDS, HEARTS, CLUBS
 */
 string Card::getSuit() const{
 	return suit;
