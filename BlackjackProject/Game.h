@@ -42,8 +42,6 @@ public:
     
     string askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
     
-    void hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
-    void stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand);
     void split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
     
     int calcValueOfHand(vector<Card> &hand); 

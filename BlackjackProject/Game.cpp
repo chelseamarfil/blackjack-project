@@ -25,9 +25,11 @@ void Game :: setPlayer(Player player) {
     mPlayer = player;
     
 }
+
 void Game::setDealer(Player dealer){
 	mDealer = dealer;
-} 
+}
+
 Player Game::getPlayer() const {
     return mPlayer;
 }
@@ -127,91 +129,6 @@ int Game::calcValueOfHand(vector<Card> &hand){
 	return playerScore;
 	
 }
-///*
-// Updates the money in an account.
-// @param accountNumber of the player
-// @param amountToAdd to the player's money - param will be negative if user loses money.
-// */
-//void Game::updateAccount(int accountNumber, double amountToAdd) {
-//    for(int i = 0; i < accountsVector.size(); i++) {
-//        if (accountsVector[i].getAccountNumber() == accountNumber) {
-//            accountsVector[i].setMoney(amountToAdd);
-//        }
-//    }
-////    map<int, double>::iterator p = mAccountMap.find(accountNumber);
-////    if (p == mAccountMap.end()) {
-////        cout << "Account doesn't exist." << endl;
-////    } else {
-////        mAccountMap[accountNumber] = getMoneyAmount(accountNumber) + amountToAdd;
-////    }
-//}
-///**
-// Adds a new account to the map. New account numbers will be incremented by 1, and will start off with $0.
-// */
-//void Game::addNewAccount() {
-//    accountNumberCounter++;
-//    Account a(accountNumberCounter, 0);
-//    accountsVector.push_back(a);
-//    //mAccountMap[accountNumberCounter] = 0;
-//}
-///**
-// Adds a new account to the map. New account numbers will be incremented by 1, and will start off with a given amount of money.
-// */
-//void Game::addNewAccount(double money) {
-//    accountNumberCounter++;
-//    Account a(accountNumberCounter, money);
-//    accountsVector.push_back(a);
-//    //mAccountMap[accountNumberCounter] = money;
-//}
-
-/**
-If the user decides to stand, decide how the program will
-select a card for the dealer
-**/
-void Game :: stand (DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand )
-{
-    cout << "The dealers hand contains the cards: " << endl;
-    for (int i = 0; i < dealerHand.size(); i ++) {
-        cout << dealerHand[i].print() << endl;
-    }
-    dealerScore += calcValueOfHand(dealerHand);
-    cout << "Dealer's hand value: " << dealerScore << endl;;
-    if (dealerScore < 17) {
-        while (dealerScore < 17 && dealerScore < 21) {
-            Card newCard = selectAndShowOne(mDeck, dealerHand);
-            cout << "Dealer's new card: " << newCard.print() << endl;
-            dealerScore += newCard.getFaceValue();
-        }
-        cout << "Dealers hand value: " << dealerScore;
-    }
-    
-//    if (playerScore < dealerScore && dealerScore <= 21) {
-//        cout << "Dealer wins";
-//    } else {
-//        cout << "Player wins";
-//    }
-
-}
-
-/**
-g. If the user decides to hit and the total value is less than 21, 
-the program will select a card for the user. If the total value of the userâ€™s 
-cards is more than 21 during this process, the user will lose; otherwise, decide 
-how the program will select a card for the dealer.
-**/
-void Game :: hit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand)
-{
-	cout<<"Your new card is: "<< selectAndShowOne(mDeck, hand).print()<<endl;
-
-//    //if the dealer's score
-//    if(calcValueOfHand(dealerHand) >= 17 ){
-//        stand(mDeck, hand, dealerHand);
-//    }
-//    else if(calcValueOfHand(dealerHand) < 17){
-//        selectAndShowOne(mDeck, dealerHand);
-//    }
-	
-}
 
 /**
 h. If the user decides to split, the dealer will draw two cards for the user. 
@@ -235,6 +152,7 @@ void Game :: split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerH
 	
 
 }
+
 string Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
 {
     cout<<"Do you want to hit, stand, or split?"<<endl;
@@ -263,91 +181,3 @@ string Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector
         
     }
 }
-
-/**
-Asks the user if they want to Hit, Stand, or Split.
-**/
-//void Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
-//{
-//    cout<<"Do you want to hit, stand, or split?"<<endl;
-//    string decision;
-//    cin >> decision;
-//    
-//    if (decision == "hit" || decision == "Hit")
-//    {
-//        hit(mDeck, hand, dealerHand);
-//        //return "hit";
-//    }
-//    
-//    else if(decision == "stand" || decision == "Stand")
-//    {
-//        stand(mDeck, hand, dealerHand);
-//        //return "stand";
-//    }
-//    
-//    else if (decision == "split" || decision == "Split")
-//    {
-//        split(mDeck, hand, dealerHand, p1);
-//        //return "split";
-//    }
-//    else {
-//        //return "error";
-//        
-//    }
-//}
-
-/**
- Gets the amount of money associated with an account number.
- @param accountNumber the account number being searched
- @return the amount of money in the account
- */
-//double Game::getMoneyAmount(int accountNumber) {
-//    for(int i = 0; i < accountsVector.size(); i++) {
-//        if (accountsVector[i].getAccountNumber() == accountNumber) {
-//            return accountsVector[i].getMoney();
-//        }
-//    }
-//
-//    return -1;
-////    map<int, double>::iterator p = mAccountMap.find(accountNumber);
-////    if (p == mAccountMap.end()) {
-////        return 0;
-////    } else {
-////        return p->second;
-////    }
-//
-////    if (accountExists(accountNumber)) {
-////        map<int, double>::iterator p = mAccountMap.find(accountNumber);
-////        return p->second;
-////    } else {
-////        return -1;
-////    }
-//}
-/**
- */
-//bool Game::accountExists(int accountNumber) {
-//    for(int i = 0; i < accountsVector.size(); i++) {
-//        if (accountsVector[i].getAccountNumber() == accountNumber) {
-//            return 1;
-//        }
-//    }
-//    return 0;
-////    map<int, double>::iterator p = mAccountMap.find(accountNumber);
-////    if (p == mAccountMap.end()) {
-////        return 0;
-////    } else {
-////        return 1;
-////    }
-//}
-//void Game::printMap() {
-//    for (map<int, double>::iterator pos = mAccountMap.begin();
-//         pos != mAccountMap.end(); pos++)
-//    {
-//        cout << pos->first << ": " << pos->second << "\n";
-//    }
-//}
-//void Game::printAccounts() {
-//    for(int i = 0; i < accountsVector.size(); i++) {
-//        cout << accountsVector[i].getAccountNumber() << ": " << accountsVector[i].getMoney() << endl;
-//    }
-//}
