@@ -137,8 +137,9 @@ placed on the second hand. Proceed the game as in step f and/or g.
 **/
 void Game :: split(DeckOfCards &mDeck, vector<Card> &hand1, vector<Card> &hand2, Player p1)
 {
+	cout<<"----------------------------------------------"<<endl;
 	cout << "You have decided to split your deck." << endl;
-	
+	cout<<"----------------------------------------------"<<endl;
 	cout << "Your cards in hand 1 are: " << endl;
 	for(int i = 0; i < hand1.size(); i++)
 	{
@@ -150,6 +151,7 @@ void Game :: split(DeckOfCards &mDeck, vector<Card> &hand1, vector<Card> &hand2,
 	{
 		cout << hand2[i].print() << endl;
 	}
+	cout<<endl;
 }
 
 void Game :: stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealersHand, Player p1){

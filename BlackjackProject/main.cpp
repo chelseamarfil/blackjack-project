@@ -47,7 +47,8 @@ void printAccounts() {
 }
 
 void userWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, double &moneyWon) {
-    cout << endl << "You won! "<< endl;
+    cout<<"----------------------------------------------"<<endl;
+	cout <<"You won! "<< endl;
     
     cout << "The dealer's score: " << g.calcValueOfHand(dealersHand) << endl;
     cout << "Your score: " << g.calcValueOfHand(playersHand) << endl;
@@ -61,7 +62,8 @@ void userWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, doub
 }
 
 void userTies(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, double &moneyWon) {
-    cout<<"You've tied with the dealer. You will win half of what you've bet." <<endl;
+    cout<<"----------------------------------------------"<<endl;
+	cout<<"You've tied with the dealer. You will win half of what you've bet." <<endl;
     cout << "The dealer's score: " << g.calcValueOfHand(dealersHand) << endl;
     cout << "Your score: " << g.calcValueOfHand(playersHand) << endl;
     
@@ -74,7 +76,8 @@ void userTies(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, doub
 }
 
 void dealerWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum) {
-    cout << "Dealer won." << endl;
+    cout<<"----------------------------------------------"<<endl;
+	cout << "Dealer won." << endl;
     cout << "The dealer's score: " << g.calcValueOfHand(dealersHand) << endl;
     cout << "Your score: " << g.calcValueOfHand(playersHand) << endl;
     double currMoney = userMoneyAmount - betAmount;
@@ -137,6 +140,7 @@ int main(int argc, const char * argv[]) {
 	        betAmount = g.promptUserForAmountToBet();
 	        if (betAmount <= userMoneyAmount) {
 	            cout << "You are betting $" << betAmount << "." << endl;
+	            cout<<"----------------------------------------------"<<endl;
                 betTracker += betAmount;
 	            validBetAmount = 1;
 	        } else {
@@ -210,18 +214,23 @@ int main(int argc, const char * argv[]) {
            		string decision;
            		decision = g.askHitOrStand(*deck, playersHand, dealersHand, p1);
            		if (decision == "hit"){
+           			cout<<deck[0]<<endl;
+           			//cout<<"The card pulled is: "<<deck[0].print()<<endl; 
            			cout<<"What hand would you like to use? (1 or 2)? ";
            			int userHandChoice;
            			cin>>userHandChoice;
+           			//we want to show the user the card they pulled before they add it to the hand of their choice 
            			if(userHandChoice = 1){
-           				g.hit(*deck, hand1);
-           				playersHand = hand1;
+           				hand1.push_back(deck->dealCard());
+           				//g.hit(*deck, hand1);
+           				//playersHand = hand1;
            				firstPrint = false; 
            				
 					}
 					else if(userHandChoice = 2){
-						g.hit(*deck, hand2);
-						playersHand = hand2;
+						hand2.push_back(deck->dealCard());
+						//g.hit(*deck, hand2);
+						//playersHand = hand2;
 						firstPrint = false;
 					}
 				}
