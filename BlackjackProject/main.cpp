@@ -201,6 +201,9 @@ int main(int argc, const char * argv[]) {
 			// Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.
         	else if (user == "split"){
         		betAmount = betAmount * 2; 
+        		cout<<"----------------------------------------------"<<endl;
+				cout << "You have decided to split your deck." << endl;
+				cout<<"----------------------------------------------"<<endl;
            		//g.split(g, *deck, playersHand); 
            		//Seperate the hand into two vectors
            		vector<Card> hand1; 
@@ -211,26 +214,48 @@ int main(int argc, const char * argv[]) {
 				//we want to return the two decks so the player can play those 
 				//cout << "The dealer has drawn two cards for you: " << selectAndShowTwo(mDeck, hand) << endl;
 				g.split(*deck,hand1,hand2,p1);
+				//the dealer gives each deck another card 
+				cout<<"----------------------------------------------"<<endl;
+				cout<<"The dealer will now deal a card for each hand"<<endl;
+				cout<<"----------------------------------------------"<<endl;
+				hand1.push_back(deck->dealCard());
+				hand2.push_back(deck->dealCard());
+				
+				g.split(*deck,hand1,hand2,p1);
            		string decision;
            		decision = g.askHitOrStand(*deck, playersHand, dealersHand, p1);
            		if (decision == "hit"){
-           			cout<<deck[0]<<endl;
+           			Card newCard = deck ->dealCard();
+           			cout<<"The card is: "<<newCard.print()<<endl;
            			//cout<<"The card pulled is: "<<deck[0].print()<<endl; 
-           			cout<<"What hand would you like to use? (1 or 2)? ";
+           			cout<<"What hand would you like to put it in? (1 or 2)? ";
            			int userHandChoice;
            			cin>>userHandChoice;
            			//we want to show the user the card they pulled before they add it to the hand of their choice 
            			if(userHandChoice = 1){
-           				hand1.push_back(deck->dealCard());
+           				hand1.push_back(newCard);
+           				playersHand = hand1;
+           				cout<<"Hand 1 now has: ";
+           				cout<<endl;
+						g.showHand(hand1);
+						cout<<endl;
+           				cout<<"The value of hand 1 is now: "<<g.calcValueOfHand(hand1)<<endl;
            				//g.hit(*deck, hand1);
-           				//playersHand = hand1;
+           				
            				firstPrint = false; 
            				
 					}
 					else if(userHandChoice = 2){
-						hand2.push_back(deck->dealCard());
+						hand2.push_back(newCard);
+						playersHand = hand2;
+						cout<<"Hand 2 now has: ";
+						cout<<endl;
+						g.showHand(hand2);
+						cout<<endl;
+						
+						cout<<"The value of hand 2 is now: "<<g.calcValueOfHand(hand2)<<endl;
 						//g.hit(*deck, hand2);
-						//playersHand = hand2;
+						
 						firstPrint = false;
 					}
 				}

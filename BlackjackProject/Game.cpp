@@ -137,20 +137,20 @@ placed on the second hand. Proceed the game as in step f and/or g.
 **/
 void Game :: split(DeckOfCards &mDeck, vector<Card> &hand1, vector<Card> &hand2, Player p1)
 {
-	cout<<"----------------------------------------------"<<endl;
-	cout << "You have decided to split your deck." << endl;
-	cout<<"----------------------------------------------"<<endl;
+
 	cout << "Your cards in hand 1 are: " << endl;
 	for(int i = 0; i < hand1.size(); i++)
 	{
 		cout << hand1[i].print() << endl;
 	}
+	cout<<"The value of hand 1 is: "<<calcValueOfHand(hand1)<<endl;
 	cout<<endl;
 	cout << "Your cards in hand 2 are: " << endl;
 	for(int i = 0; i < hand2.size(); i++)
 	{
 		cout << hand2[i].print() << endl;
 	}
+	cout<<"The value of hand 2 is: "<<calcValueOfHand(hand2)<<endl;
 	cout<<endl;
 }
 
