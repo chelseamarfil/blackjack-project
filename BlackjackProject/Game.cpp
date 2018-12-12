@@ -135,30 +135,46 @@ h. If the user decides to split, the dealer will draw two cards for the user.
 The user now has two hands. Also, an additional bet of equal value to the original bet is 
 placed on the second hand. Proceed the game as in step f and/or g.
 **/
-void Game :: split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
+void Game :: split(DeckOfCards &mDeck, vector<Card> &hand1, vector<Card> &hand2, Player p1)
 {
-	vector<Card> hand2 = selectAndShowTwo(mDeck,hand);
-	hand.erase(hand.begin(), hand.begin() +1);
-	p1.setHand(hand2);
-	//cout << "The dealer has drawn two cards for you: " << selectAndShowTwo(mDeck, hand) << endl;
-	cout << "The dealer has drawn two cards for you." << endl;
-	cout << "This will now be your second hand. " << endl;
-	cout << "Your cards are: " << endl;
-		
+	cout << "You have decided to split your deck." << endl;
+	
+	cout << "Your cards in hand 1 are: " << endl;
+	for(int i = 0; i < hand1.size(); i++)
+	{
+		cout << hand1[i].print() << endl;
+	}
+	cout<<endl;
+	cout << "Your cards in hand 2 are: " << endl;
 	for(int i = 0; i < hand2.size(); i++)
 	{
 		cout << hand2[i].print() << endl;
 	}
 }
 
-void Game :: hit(Game g, DeckOfCards &deck, vector<Card> &playersHand) {
-    cout<<"You have drawn a: "<< g.selectAndShowOne(deck, playersHand).print()<<endl;
-    cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
+void Game :: stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealersHand, Player p1){
+    cout << endl << "The dealers hand contains the cards: " << endl;
+    for (int i = 0; i < dealersHand.size(); i ++) {
+        cout << dealersHand[i].print() << endl;
+    }
+    
+    cout << endl << "Dealer's hand value before dealing: " << calcValueOfHand(dealersHand) << endl;
+    
+    while (calcValueOfHand(dealersHand) < 17) {
+        Card newCard = selectAndShowOne(mDeck, dealersHand);
+        cout << "Dealer's new card: " << newCard.print() << endl;
+    }
+    cout << "Dealers hand value after dealing: " << calcValueOfHand(dealersHand) << endl;
 }
 
-string Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
+void Game :: hit(DeckOfCards &deck, vector<Card> &playersHand) {
+    cout<<"You have drawn a: "<< selectAndShowOne(deck, playersHand).print()<<endl;
+    cout << "The value of that hand is now: " << calcValueOfHand(playersHand) << endl;
+}
+
+string Game :: askHitOrStand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
 {
-    cout<<"Do you want to hit, stand, or split?"<<endl;
+    cout<<"Do you want to hit or stand?"<<endl;
     string decision;
     cin >> decision;
     
@@ -174,11 +190,6 @@ string Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector
         return "stand";
     }
     
-    else if (decision == "split" || decision == "Split")
-    {
-        //split(mDeck, hand, dealerHand, p1);
-        return "split";
-    }
     else {
         return "error";
         
