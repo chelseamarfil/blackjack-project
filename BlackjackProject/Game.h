@@ -39,6 +39,7 @@ public:
     vector<Card> selectAndShowTwo(DeckOfCards &mDeck, vector<Card> &hand); //done
     Card selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand); //done
     void showHand(vector<Card> &hand); //done
+    void hit(Game g, DeckOfCards &deck, vector<Card> &playersHand);
     
     string askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1);
     

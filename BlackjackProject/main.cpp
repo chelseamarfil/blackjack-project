@@ -95,10 +95,7 @@ void askPlayAgain(bool &gameEnd, double betTracker, double moneyWon) {
     }
 }
 
-void hit(Game g, DeckOfCards &deck, vector<Card> &playersHand) {
-    cout<<"You have drawn a: "<< g.selectAndShowOne(deck, playersHand).print()<<endl;
-    cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
-}
+
 
 int main(int argc, const char * argv[]) {
     Account a(1001, 100);
@@ -194,7 +191,7 @@ int main(int argc, const char * argv[]) {
                 userStands = true;
             // If user decides to hit.
            } else if (user == "hit") {
-               hit(g, *deck, playersHand);
+               g.hit(g, *deck, playersHand);
            }
             
             // h. TODO: If the user decides to split, the dealer will draw two cards for the user. The user now has two hands. Also, an additional bet of equal value to the original bet is placed on the second hand. Proceed the game as in step f and/or g.

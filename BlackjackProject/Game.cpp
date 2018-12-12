@@ -149,8 +149,11 @@ void Game :: split(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerH
 	{
 		cout << hand2[i].print() << endl;
 	}
-	
+}
 
+void Game :: hit(Game g, DeckOfCards &deck, vector<Card> &playersHand) {
+    cout<<"You have drawn a: "<< g.selectAndShowOne(deck, playersHand).print()<<endl;
+    cout << "The value of your hand is now: " << g.calcValueOfHand(playersHand) << endl;
 }
 
 string Game :: askHitStandOrSplit(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
