@@ -223,21 +223,29 @@ int main(int argc, const char * argv[]) {
 				hand1.push_back(deck->dealCard());
 				hand2.push_back(deck->dealCard());
            		if(g.calcValueOfHand(hand1) == 21){
+           			playersHand = hand1;
+           			g.split(*deck,hand1,hand2,p1);//displays the two hands
            			userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
            			askPlayAgain(gameEnd, betTracker, moneyWon);
            			break;
 				}
 				else if(g.calcValueOfHand(hand1) > 21){
+					playersHand = hand1;
+					g.split(*deck,hand1,hand2,p1);//displays the two hands
            			dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
            			askPlayAgain(gameEnd, betTracker, moneyWon);
            			break;
 				}
 				if(g.calcValueOfHand(hand2) == 21){
+					playersHand = hand2;
+					g.split(*deck,hand1,hand2,p1);//displays the two hands
            			userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
            			askPlayAgain(gameEnd, betTracker, moneyWon);
            			break;
 				}
 				else if(g.calcValueOfHand(hand2) > 21){
+					playersHand = hand2;
+					g.split(*deck,hand1,hand2,p1); //displays the two hands
            			dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
            			askPlayAgain(gameEnd, betTracker, moneyWon);
            			break;
@@ -252,7 +260,6 @@ int main(int argc, const char * argv[]) {
            			cout<<"What hand would you like to put it in? (1 or 2)? ";
            			int userHandChoice;
            			cin>>userHandChoice;
-           			cout<<userHandChoice;
            			//we want to show the user the card they pulled before they add it to the hand of their choice 
            			if(userHandChoice == 1){
            				hand1.push_back(newCard);
@@ -291,12 +298,20 @@ int main(int argc, const char * argv[]) {
            			int userHandChoice;
            			cin>>userHandChoice;
            			if(userHandChoice = 1){
+           				playersHand = hand1;
            				g.stand(*deck, hand1, dealersHand, p1);
-           				userStands == true;
+           				firstPrint = false;
+           				userStands = true;
+           				
 					}
 					else if(userHandChoice = 2){
+						playersHand = hand2;
 						g.stand(*deck, hand2, dealersHand, p1);
-						userStands == true;
+						
+						firstPrint = false;
+						userStands = true;
+					
+						
 					}
 					else{
 						cout<<"error"<<endl;
