@@ -9,16 +9,11 @@
 #ifndef Game_h
 #define Game_h
 
-// Would we include these or make them friend classes?
 #include "Card.h"
 #include "Player.h"
 #include "DeckOfCards.h"
 
 #include <vector>
-
-
-
-// static vector<Account> accountsVector;
 
 class Game {
 public:

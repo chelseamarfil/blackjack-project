@@ -4,10 +4,16 @@
  
 using namespace std;
 
+//Constructor contains a deck of cards. 
 Game::Game() {
     mDeck = DeckOfCards();
 }
 
+/**
+Constructor that takes in a deck of cards, and the playerScore is set to 0. 
+@param: DeckOfCards& deck
+@param: Player player
+*/
 Game::Game(DeckOfCards& deck, Player player, Player dealer) {
     mDeck = deck;
     mPlayer = player;
@@ -15,21 +21,37 @@ Game::Game(DeckOfCards& deck, Player player, Player dealer) {
     dealerScore = 0;
 }
 
+/**
+Constructor that takes in a deck of cards, a player, and a dealer. Both player and dealer scores are set to 0. 
+@param: DeckOfCards& deck
+*/
 Game::Game(DeckOfCards& deck) {
     mDeck = deck;
     playerScore = 0;
     dealerScore = 0;
 }
 
+/**
+Takes in a player to be a player of the game. 
+@param: Player player
+*/
 void Game :: setPlayer(Player player) {
     mPlayer = player;
     
 }
 
+/**
+Takes in a dealer to be a player of the game.
+@param: Player dealer
+*/
 void Game::setDealer(Player dealer){
 	mDealer = dealer;
 }
 
+/**
+returns the player of the game.
+@return: mPlayer
+*/
 Player Game::getPlayer() const {
     return mPlayer;
 }
@@ -87,6 +109,10 @@ Card Game::selectAndShowOne(DeckOfCards &mDeck, vector<Card> &hand) {
     
 }
 
+/**
+Acts as a toString for the hand that’s passed in. Displays what the user has in their hand. 
+@param: vector<Card> &hand
+*/
 void Game::showHand(vector<Card> &hand){
 	for(int i=0; i < hand.size(); i++){
 		cout<<hand[i].print()<<" | ";
@@ -134,6 +160,12 @@ int Game::calcValueOfHand(vector<Card> &hand){
 h. If the user decides to split, the dealer will draw two cards for the user. 
 The user now has two hands. Also, an additional bet of equal value to the original bet is 
 placed on the second hand. Proceed the game as in step f and/or g.
+
+Allows the user to draw another two cards. The user will now have two hands to play with. 
+@param: DeckOfCards &mDeck
+@param: vector<Card> &hand1
+@param: vector<Card> &hand2
+@param: Player p1
 **/
 void Game :: split(DeckOfCards &mDeck, vector<Card> &hand1, vector<Card> &hand2, Player p1)
 {
@@ -154,6 +186,13 @@ void Game :: split(DeckOfCards &mDeck, vector<Card> &hand1, vector<Card> &hand2,
 	cout<<endl;
 }
 
+/**
+If the dealer’s score is greater than or equal to 17, then don’t do anything. If the dealer’s score is less than 17, while it’s less than 17, continue drawing cards until it reaches 17. If the player’s score is less than the dealer’s score, then the player wins. If not, the dealer wins. 
+@param: DeckOfCards &mDeck
+@param: vector<Card> &hand
+@param: vector<Card> &dealersHand
+@param: Player p1
+*/
 void Game :: stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealersHand, Player p1){
     cout << endl << "The dealers hand contains the cards: " << endl;
     for (int i = 0; i < dealersHand.size(); i ++) {
@@ -169,11 +208,25 @@ void Game :: stand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealers
     cout << "Dealers hand value after dealing: " << calcValueOfHand(dealersHand) << endl;
 }
 
+/**
+The dealer will receive one new card. Stand will be called if the dealer’s score is greater than or equal to 17. 
+If the dealer’s score is less than 17, then the dealer will get another card. 
+
+@param: DeckOfCards &deck
+@param: vector<Card> &playersHand
+*/
 void Game :: hit(DeckOfCards &deck, vector<Card> &playersHand) {
     cout<<"You have drawn a: "<< selectAndShowOne(deck, playersHand).print()<<endl;
     cout << "The value of that hand is now: " << calcValueOfHand(playersHand) << endl;
 }
 
+/**
+Prompts the user if they want to stand, hit, or split. It will call the correct functions that the user wants to select. 
+@param: DeckOfCards &mDeck
+@param: vector<Card> &hand
+@param: vector<Card> &dealerHand
+@param: Player p1
+*/
 string Game :: askHitOrStand(DeckOfCards &mDeck, vector<Card> &hand, vector<Card> &dealerHand, Player p1)
 {
     cout<<"Do you want to hit or stand?"<<endl;
