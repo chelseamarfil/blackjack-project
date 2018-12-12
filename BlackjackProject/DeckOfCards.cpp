@@ -11,6 +11,11 @@
 #include <cstdlib> //for srand and rand
 #include <iomanip>
 
+/**
+Constructor for DeckOfCards. Contains an array of faces and suits with their string equivalents. The currentCard represents the current 
+position within the deck of cards at the moment. (= 0). 
+“Assembles” the deck of cards by pairing a face with a suit with a for loop.
+*/
 DeckOfCards::DeckOfCards() {
     
     string faces[] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "King", "Queen"};
@@ -28,7 +33,9 @@ DeckOfCards::DeckOfCards() {
 
 
 /*
- Shuffles a deck of cards using srand
+ Shuffles a deck of cards using srand.
+ With srand, we can generate random values to mix around the deck of cards 
+ within each other by swapping positions within the deck. 
  */
 void DeckOfCards::shuffle() {
     //srand for randomly generated time
@@ -44,7 +51,7 @@ void DeckOfCards::shuffle() {
 
 }
 /*
-* print out the deck 
+Prints out the formatted deck of cards. 
 */
 void DeckOfCards::printDeck() const{
     cout << left;
@@ -56,7 +63,9 @@ void DeckOfCards::printDeck() const{
 }
          
 /*
-*
+Checks the current position of the deck of cards, through currentCard. If the position is 
+greater than the amount of cards in the deck, then no card will be dealt. If the position is less
+than the amount of cards in the deck, the card after the currentCard will be dealt. 
 */ 
 Card DeckOfCards:: dealCard() {
 	//if currentCard - index that moves along the deck of cards 
