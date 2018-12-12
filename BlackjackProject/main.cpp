@@ -52,10 +52,11 @@ void userWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, doub
     
     cout << "The dealer's score: " << g.calcValueOfHand(dealersHand) << endl;
     cout << "Your score: " << g.calcValueOfHand(playersHand) << endl;
-    double currMoney = userMoneyAmount  - betAmount; //take their bet for now
+    //you will be taking their money, but giving it back to them + the amount they bet 
+    double currMoney = userMoneyAmount  + betAmount; 
     
-    moneyWon += (betAmount * 2); //give thier money back and the amount they bet
-    currMoney += moneyWon;     
+//    moneyWon += (betAmount * 2); //give thier money back and the amount they bet
+//    currMoney += moneyWon;     
 	
     updateAccount(acctNum, currMoney);
     cout << "Your balance is now: " << getMoneyAmount(acctNum) << endl << endl;
@@ -90,6 +91,7 @@ void askPlayAgain(bool &gameEnd, double betTracker, double moneyWon) {
     string userInput;
     cin >> userInput;
     if(userInput == "yes" || userInput == "Yes"){
+    	
         gameEnd = false;
     } else if (userInput == "no" || userInput == "No") {
         //TODO: not sure how exactly he wants us to calculate moneyWon...
@@ -220,7 +222,26 @@ int main(int argc, const char * argv[]) {
 				cout<<"----------------------------------------------"<<endl;
 				hand1.push_back(deck->dealCard());
 				hand2.push_back(deck->dealCard());
-				
+           		if(g.calcValueOfHand(hand1) == 21){
+           			userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
+           			askPlayAgain(gameEnd, betTracker, moneyWon);
+           			break;
+				}
+				else if(g.calcValueOfHand(hand1) > 21){
+           			dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
+           			askPlayAgain(gameEnd, betTracker, moneyWon);
+           			break;
+				}
+				if(g.calcValueOfHand(hand2) == 21){
+           			userWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum, moneyWon);
+           			askPlayAgain(gameEnd, betTracker, moneyWon);
+           			break;
+				}
+				else if(g.calcValueOfHand(hand2) > 21){
+           			dealerWins(g, playersHand, dealersHand, userMoneyAmount, betAmount, acctNum);
+           			askPlayAgain(gameEnd, betTracker, moneyWon);
+           			break;
+				}
 				g.split(*deck,hand1,hand2,p1);
            		string decision;
            		decision = g.askHitOrStand(*deck, playersHand, dealersHand, p1);
@@ -231,8 +252,9 @@ int main(int argc, const char * argv[]) {
            			cout<<"What hand would you like to put it in? (1 or 2)? ";
            			int userHandChoice;
            			cin>>userHandChoice;
+           			cout<<userHandChoice;
            			//we want to show the user the card they pulled before they add it to the hand of their choice 
-           			if(userHandChoice = 1){
+           			if(userHandChoice == 1){
            				hand1.push_back(newCard);
            				playersHand = hand1;
            				cout<<"Hand 1 now has: ";
@@ -240,12 +262,14 @@ int main(int argc, const char * argv[]) {
 						g.showHand(hand1);
 						cout<<endl;
            				cout<<"The value of hand 1 is now: "<<g.calcValueOfHand(hand1)<<endl;
+
+	
            				//g.hit(*deck, hand1);
            				
            				firstPrint = false; 
            				
 					}
-					else if(userHandChoice = 2){
+					else if(userHandChoice == 2){
 						hand2.push_back(newCard);
 						playersHand = hand2;
 						cout<<"Hand 2 now has: ";
@@ -254,6 +278,8 @@ int main(int argc, const char * argv[]) {
 						cout<<endl;
 						
 						cout<<"The value of hand 2 is now: "<<g.calcValueOfHand(hand2)<<endl;
+
+
 						//g.hit(*deck, hand2);
 						
 						firstPrint = false;
