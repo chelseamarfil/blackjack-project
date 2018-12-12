@@ -9,8 +9,6 @@
 #ifndef Account_h
 #define Account_h
 
-// static int accountNumberCounter = 1000;
-
 class Account {
 
 public:
