@@ -1,5 +1,5 @@
 /* Names: Tiffany Lam, Chelsea Marfil, Rachel Pai
- * ID: , 014400501,
+ * ID: 015181853, 014400501, 015555603
  * Class: CECS 282 C++
  * Instructor: Minhthong Nguyen
  * Due Date: December 12, 2018
@@ -13,6 +13,11 @@ using namespace std;
 
 static vector<Account> accountsVector;
 
+/**
+If the account number passed into the function matches what’s inside the accounts vector, then set the amount of money to what’s passed in. 
+@param: int accountNumber
+@param: double amountToAdd
+*/
 void updateAccount(int accountNumber, double amountToAdd) {
     for(int i = 0; i < accountsVector.size(); i++) {
         if (accountsVector[i].getAccountNumber() == accountNumber) {
@@ -21,6 +26,11 @@ void updateAccount(int accountNumber, double amountToAdd) {
     }
 }
 
+/**
+Checks if the passed in account number is a valid account, checking if it’s in the account vector. Returns true or false depending on if it’s in the vector or not.
+@param: int accountNumber
+@return: bool
+*/
 bool accountExists(int accountNumber) {
     for(int i = 0; i < accountsVector.size(); i++) {
         if (accountsVector[i].getAccountNumber() == accountNumber) {
@@ -30,6 +40,11 @@ bool accountExists(int accountNumber) {
     return 0;
 }
 
+/**
+Returns the amount of money as a double  inside the account number that’s passed in. 
+@param: int accountNumber
+@return: double (money amount)
+*/
 double getMoneyAmount(int accountNumber) {
     for(int i = 0; i < accountsVector.size(); i++) {
         if (accountsVector[i].getAccountNumber() == accountNumber) {
@@ -40,12 +55,25 @@ double getMoneyAmount(int accountNumber) {
     return -1;
 }
 
+/**
+Acts as a toString to the account, printing it out one by one. 
+*/
 void printAccounts() {
     for(int i = 0; i < accountsVector.size(); i++) {
         cout << accountsVector[i].getAccountNumber() << ": " << accountsVector[i].getMoney() << endl;
     }
 }
 
+/**
+Displays that the user has won, along with the corresponding scores for both the user and the dealer. The money bet by the user is doubled. The account is also updated with the bet money in addition to what was already existing. The user’s balance will also display.
+@param: Game g
+@param: vector<Card> &playersHand
+@param: vector<Card> &dealersHand
+@param: double userMoneyAmount
+@param: double betAmount
+@param: int acctNum
+@param: int moneyWon
+*/
 void userWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, double &moneyWon) {
     cout<<"----------------------------------------------"<<endl;
 	cout <<"You won! "<< endl;
@@ -55,13 +83,23 @@ void userWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, doub
     //you will be taking their money, but giving it back to them + the amount they bet 
     double currMoney = userMoneyAmount  + betAmount; 
     
-     moneyWon += (betAmount); //give thier money back and the amount they bet
-//    currMoney += moneyWon;     
+     moneyWon += (betAmount); //give their money back and the amount they bet
+  
 	
     updateAccount(acctNum, currMoney);
     cout << "Your balance is now: " << getMoneyAmount(acctNum) << endl << endl;
 }
 
+/**
+Displays that the user has tied with the dealer, along with the corresponding scores for both the user and the dealer. The money bet by the user is cut in half. The account is also updated with the bet money in addition to what was already existing. The user’s balance will also display.
+@param: Game g
+@param: vector<Card> &playersHand
+@param: vector<Card> &dealersHand
+@param: double userMoneyAmount
+@param: double betAmount
+@param: int acctNum
+@param: int moneyWon
+*/
 void userTies(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum, double &moneyWon) {
     cout<<"----------------------------------------------"<<endl;
 	cout<<"You've tied with the dealer. You will win half of what you've bet." <<endl;
@@ -76,6 +114,16 @@ void userTies(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, doub
     cout << "Your balance is now: " << getMoneyAmount(acctNum) << endl << endl;
 }
 
+/**
+Displays that the dealer has won, along with the corresponding scores for both the user and the dealer. The money bet by the user is lost. The user’s balance will also display, subtracting what bet was given at the beginning of the game.
+@param: Game g
+@param: vector<Card> &playersHand
+@param: vector<Card> &dealersHand
+@param: double userMoneyAmount
+@param: double betAmount
+@param: int acctNum
+@param: int moneyWon
+*/
 void dealerWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, double userMoneyAmount, double betAmount, int acctNum) {
     cout<<"----------------------------------------------"<<endl;
 	cout << "Dealer won." << endl;
@@ -86,6 +134,12 @@ void dealerWins(Game g, vector<Card> &playersHand, vector<Card> &dealersHand, do
     cout << "Your balance is now: " << getMoneyAmount(acctNum) << endl << endl;
 }
 
+/**
+The user will be prompted if they would like to play again. The money won from earlier will be transferred into their account to be able to bet again.
+@param: bool &gameEnd
+@param: double betTracker
+@param: double moneyWon
+*/
 void askPlayAgain(bool &gameEnd, double betTracker, double &moneyWon) {
     cout << "Do you want to play again?" << endl;
     string userInput;
