@@ -1,5 +1,7 @@
 # Blackjack Project
-This project simulates a Blackjack Slot Machine. When the program runs, it does the following:
+This project simulates a Blackjack Slot Machine. 
+
+When the program runs, it does the following:
 1. Ask the user to enter the account number.
 2. Ask the user to enter the amount of money he/she wants to bet.
 3. The program will randomly select and show the user two cards.
