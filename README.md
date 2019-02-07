@@ -8,4 +8,4 @@ When the program runs, it does the following:
 4. The program will randomly select another two cards and show one card (dealer’s cards).
 5. The program will show the value of user’s cards and ask if the user wants to hit, stand, or split.
 
-For further specifications: [Project Specifications](ProjectSpecifications.pdf)
+For further specifications: [Project Specifications](ProjectSpecifications.pdf) from Professor Minh at CSULB.
